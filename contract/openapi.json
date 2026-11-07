@@ -1,0 +1,2409 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Bunyan API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Api Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/estimate": {
+      "post": {
+        "summary": "Post Estimate",
+        "description": "Stateless estimate. Nothing is saved.",
+        "operationId": "post_estimate_api_estimate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Estimate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "summary": "List Projects",
+        "operationId": "list_projects_api_projects_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectSummary"
+                  },
+                  "type": "array",
+                  "title": "Response List Projects Api Projects Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Project",
+        "description": "Save an estimate as a project, with its baseline schedule computed on read.",
+        "operationId": "create_project_api_projects_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectRecord"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}": {
+      "get": {
+        "summary": "Get Project",
+        "operationId": "get_project_api_projects__project_id__get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectRecord"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/schedule": {
+      "get": {
+        "summary": "Get Schedule",
+        "operationId": "get_schedule_api_projects__project_id__schedule_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/dashboard": {
+      "get": {
+        "summary": "Get Dashboard",
+        "operationId": "get_dashboard_api_projects__project_id__dashboard_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "status_day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 2000,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status Day"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dashboard"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/permits": {
+      "get": {
+        "summary": "Get Permits",
+        "operationId": "get_permits_api_projects__project_id__permits_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PermitItem"
+                  },
+                  "title": "Response Get Permits Api Projects  Project Id  Permits Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/changes": {
+      "post": {
+        "summary": "Add Change",
+        "operationId": "add_change_api_projects__project_id__changes_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeEvent"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/inspections/{inspection_id}/status": {
+      "post": {
+        "summary": "Update Inspection",
+        "operationId": "update_inspection_api_projects__project_id__inspections__inspection_id__status_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "inspection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Inspection Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InspectionStatusUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inspection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/tasks/{task_id}": {
+      "patch": {
+        "summary": "Update Task Progress",
+        "operationId": "update_task_progress_api_projects__project_id__tasks__task_id__patch",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskProgressUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskProgressResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake": {
+      "post": {
+        "summary": "Post Intake",
+        "description": "Free text and/or a spec PDF -> proposed ProjectInput, missing information, and an estimate if complete.",
+        "operationId": "post_intake_api_intake_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_post_intake_api_intake_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/quotes/compare": {
+      "post": {
+        "summary": "Post Quote Compare",
+        "operationId": "post_quote_compare_api_projects__project_id__quotes_compare_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_post_quote_compare_api_projects__project_id__quotes_compare_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteComparison"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/notifications": {
+      "get": {
+        "summary": "Get Notifications",
+        "operationId": "get_notifications_api_projects__project_id__notifications_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  },
+                  "title": "Response Get Notifications Api Projects  Project Id  Notifications Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/payments": {
+      "post": {
+        "summary": "Add Payment",
+        "description": "Record money actually paid (for example, an approved interim payment certificate).",
+        "operationId": "add_payment_api_projects__project_id__payments_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/commitments": {
+      "post": {
+        "summary": "Add Commitment",
+        "description": "Record money agreed but not yet paid (for example, a signed subcontract).",
+        "operationId": "add_commitment_api_projects__project_id__commitments_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommitmentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commitment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BOMLine": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "item": {
+            "type": "string",
+            "title": "Item"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "qty": {
+            "type": "number",
+            "title": "Qty"
+          },
+          "rate_sar": {
+            "type": "number",
+            "title": "Rate Sar"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "title": "Amount Sar"
+          },
+          "rate_overridden": {
+            "type": "boolean",
+            "title": "Rate Overridden",
+            "default": false
+          },
+          "work_package_split": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Work Package Split"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "item",
+          "unit",
+          "qty",
+          "rate_sar",
+          "amount_sar",
+          "work_package_split"
+        ],
+        "title": "BOMLine"
+      },
+      "BOMRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "item": {
+            "type": "string",
+            "title": "Item"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "title": "Amount Sar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "item",
+          "category",
+          "amount_sar"
+        ],
+        "title": "BOMRef"
+      },
+      "Body_post_intake_api_intake_post": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "default": ""
+          },
+          "spec_pdf": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spec Pdf"
+          }
+        },
+        "type": "object",
+        "title": "Body_post_intake_api_intake_post"
+      },
+      "Body_post_quote_compare_api_projects__project_id__quotes_compare_post": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "default": ""
+          },
+          "quote_pdf": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Pdf"
+          }
+        },
+        "type": "object",
+        "title": "Body_post_quote_compare_api_projects__project_id__quotes_compare_post"
+      },
+      "BudgetFit": {
+        "properties": {
+          "budget_incl_vat_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Incl Vat Sar"
+          },
+          "difference_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difference Sar",
+            "description": "budget − estimate; positive means under budget"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "under",
+              "over",
+              "on_budget",
+              "no_budget"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "budget_incl_vat_sar",
+          "status"
+        ],
+        "title": "BudgetFit"
+      },
+      "ChangeCreate": {
+        "properties": {
+          "month": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 0.0,
+            "title": "Month"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "change_request",
+              "procurement_risk",
+              "quote_variance",
+              "risk_forecast"
+            ],
+            "title": "Type"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "cost_sar": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Cost Sar",
+            "default": 0
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Days",
+            "default": 0
+          },
+          "days_avoided": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Days Avoided",
+            "default": 0
+          },
+          "approved_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "engineer",
+                  "owner"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approved By"
+          },
+          "affects_task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affects Task Id"
+          },
+          "forecast": {
+            "type": "boolean",
+            "title": "Forecast",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "month",
+          "type",
+          "title"
+        ],
+        "title": "ChangeCreate"
+      },
+      "ChangeEvent": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "month": {
+            "type": "integer",
+            "title": "Month"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "change_request",
+              "procurement_risk",
+              "quote_variance",
+              "risk_forecast"
+            ],
+            "title": "Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "cost_sar": {
+            "type": "integer",
+            "title": "Cost Sar",
+            "default": 0
+          },
+          "days": {
+            "type": "integer",
+            "title": "Days",
+            "default": 0
+          },
+          "days_avoided": {
+            "type": "integer",
+            "title": "Days Avoided",
+            "default": 0
+          },
+          "approved_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approved By"
+          },
+          "affects_task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affects Task Id"
+          },
+          "forecast": {
+            "type": "boolean",
+            "title": "Forecast",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "month",
+          "type",
+          "title"
+        ],
+        "title": "ChangeEvent"
+      },
+      "Commitment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "title": "Amount Sar"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "amount_sar",
+          "description"
+        ],
+        "title": "Commitment"
+      },
+      "CommitmentCreate": {
+        "properties": {
+          "amount_sar": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Amount Sar"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "amount_sar",
+          "description"
+        ],
+        "title": "CommitmentCreate"
+      },
+      "ContingencyEntry": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "title": "Amount Sar"
+          },
+          "balance_after_sar": {
+            "type": "integer",
+            "title": "Balance After Sar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "amount_sar",
+          "balance_after_sar"
+        ],
+        "title": "ContingencyEntry"
+      },
+      "Dashboard": {
+        "properties": {
+          "status_day": {
+            "type": "integer",
+            "title": "Status Day"
+          },
+          "planned_progress_pct": {
+            "type": "number",
+            "title": "Planned Progress Pct"
+          },
+          "actual_progress_pct": {
+            "type": "number",
+            "title": "Actual Progress Pct"
+          },
+          "budget_excl_vat_sar": {
+            "type": "integer",
+            "title": "Budget Excl Vat Sar"
+          },
+          "work_packages_baseline_sar": {
+            "type": "integer",
+            "title": "Work Packages Baseline Sar"
+          },
+          "approved_changes_sar": {
+            "type": "integer",
+            "title": "Approved Changes Sar"
+          },
+          "risk_forecast_sar": {
+            "type": "integer",
+            "title": "Risk Forecast Sar"
+          },
+          "forecast_final_cost_sar": {
+            "type": "integer",
+            "title": "Forecast Final Cost Sar"
+          },
+          "forecast_vs_budget_sar": {
+            "type": "integer",
+            "title": "Forecast Vs Budget Sar"
+          },
+          "paid_sar": {
+            "type": "integer",
+            "title": "Paid Sar"
+          },
+          "committed_unpaid_sar": {
+            "type": "integer",
+            "title": "Committed Unpaid Sar"
+          },
+          "remaining_uncommitted_sar": {
+            "type": "integer",
+            "title": "Remaining Uncommitted Sar"
+          },
+          "contingency_start_sar": {
+            "type": "integer",
+            "title": "Contingency Start Sar"
+          },
+          "contingency_left_sar": {
+            "type": "integer",
+            "title": "Contingency Left Sar"
+          },
+          "contingency_ledger": {
+            "items": {
+              "$ref": "#/components/schemas/ContingencyEntry"
+            },
+            "type": "array",
+            "title": "Contingency Ledger"
+          },
+          "baseline_handover_day": {
+            "type": "integer",
+            "title": "Baseline Handover Day"
+          },
+          "forecast_handover_day": {
+            "type": "integer",
+            "title": "Forecast Handover Day"
+          },
+          "handover_slip_days": {
+            "type": "integer",
+            "title": "Handover Slip Days"
+          },
+          "critical_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Critical Path"
+          },
+          "change_log": {
+            "items": {
+              "$ref": "#/components/schemas/ChangeEvent"
+            },
+            "type": "array",
+            "title": "Change Log"
+          },
+          "inspections": {
+            "items": {
+              "$ref": "#/components/schemas/Inspection"
+            },
+            "type": "array",
+            "title": "Inspections"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status_day",
+          "planned_progress_pct",
+          "actual_progress_pct",
+          "budget_excl_vat_sar",
+          "work_packages_baseline_sar",
+          "approved_changes_sar",
+          "risk_forecast_sar",
+          "forecast_final_cost_sar",
+          "forecast_vs_budget_sar",
+          "paid_sar",
+          "committed_unpaid_sar",
+          "remaining_uncommitted_sar",
+          "contingency_start_sar",
+          "contingency_left_sar",
+          "contingency_ledger",
+          "baseline_handover_day",
+          "forecast_handover_day",
+          "handover_slip_days",
+          "critical_path",
+          "change_log",
+          "inspections"
+        ],
+        "title": "Dashboard"
+      },
+      "Estimate": {
+        "properties": {
+          "project": {
+            "$ref": "#/components/schemas/ProjectInput"
+          },
+          "bom_lines": {
+            "items": {
+              "$ref": "#/components/schemas/BOMLine"
+            },
+            "type": "array",
+            "title": "Bom Lines"
+          },
+          "work_packages": {
+            "items": {
+              "$ref": "#/components/schemas/WorkPackageBudget"
+            },
+            "type": "array",
+            "title": "Work Packages"
+          },
+          "materials_total_sar": {
+            "type": "integer",
+            "title": "Materials Total Sar"
+          },
+          "work_packages_total_sar": {
+            "type": "integer",
+            "title": "Work Packages Total Sar"
+          },
+          "contingency_pct": {
+            "type": "number",
+            "title": "Contingency Pct"
+          },
+          "contingency_sar": {
+            "type": "integer",
+            "title": "Contingency Sar"
+          },
+          "subtotal_excl_vat_sar": {
+            "type": "integer",
+            "title": "Subtotal Excl Vat Sar"
+          },
+          "vat_pct": {
+            "type": "number",
+            "title": "Vat Pct"
+          },
+          "vat_sar": {
+            "type": "integer",
+            "title": "Vat Sar"
+          },
+          "total_incl_vat_sar": {
+            "type": "integer",
+            "title": "Total Incl Vat Sar"
+          },
+          "cost_per_m2_excl_vat_sar": {
+            "type": "integer",
+            "title": "Cost Per M2 Excl Vat Sar"
+          },
+          "budget_fit": {
+            "$ref": "#/components/schemas/BudgetFit"
+          },
+          "assumptions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Assumptions"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "default": "estimate — requires review by a licensed engineering office"
+          }
+        },
+        "type": "object",
+        "required": [
+          "project",
+          "bom_lines",
+          "work_packages",
+          "materials_total_sar",
+          "work_packages_total_sar",
+          "contingency_pct",
+          "contingency_sar",
+          "subtotal_excl_vat_sar",
+          "vat_pct",
+          "vat_sar",
+          "total_incl_vat_sar",
+          "cost_per_m2_excl_vat_sar",
+          "budget_fit",
+          "assumptions"
+        ],
+        "title": "Estimate"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Inspection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "month": {
+            "type": "integer",
+            "title": "Month"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/InspectionEvent"
+            },
+            "type": "array",
+            "title": "History"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "readOnly": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "month",
+          "task_id",
+          "title",
+          "history",
+          "status"
+        ],
+        "title": "Inspection"
+      },
+      "InspectionEvent": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "submitted",
+              "rejected",
+              "approved"
+            ],
+            "title": "Status"
+          },
+          "by": {
+            "type": "string",
+            "enum": [
+              "contractor",
+              "engineer"
+            ],
+            "title": "By"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "by"
+        ],
+        "title": "InspectionEvent"
+      },
+      "InspectionStatusUpdate": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "submitted",
+              "rejected",
+              "approved"
+            ],
+            "title": "Status"
+          },
+          "by": {
+            "type": "string",
+            "enum": [
+              "contractor",
+              "engineer"
+            ],
+            "title": "By"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "by"
+        ],
+        "title": "InspectionStatusUpdate"
+      },
+      "IntakeResult": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "gemini",
+              "mock",
+              "template",
+              "unavailable"
+            ],
+            "title": "Source"
+          },
+          "extracted": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Extracted",
+            "description": "Fields read from the text or PDF (not yet validated by the engine)"
+          },
+          "missing_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Fields",
+            "description": "Inputs the engine needs but the text did not give"
+          },
+          "assumed_defaults": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Assumed Defaults",
+            "description": "Defaults used where the text was silent"
+          },
+          "missing_info": {
+            "items": {
+              "$ref": "#/components/schemas/MissingInfo"
+            },
+            "type": "array",
+            "title": "Missing Info"
+          },
+          "project_input": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProjectInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "estimate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Estimate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "missing_info"
+        ],
+        "title": "IntakeResult"
+      },
+      "MissingInfo": {
+        "properties": {
+          "item": {
+            "type": "string",
+            "title": "Item"
+          },
+          "item_ar": {
+            "type": "string",
+            "title": "Item Ar"
+          },
+          "why_it_matters": {
+            "type": "string",
+            "title": "Why It Matters"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "blocker",
+              "high",
+              "medium"
+            ],
+            "title": "Severity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item",
+          "item_ar",
+          "why_it_matters",
+          "severity"
+        ],
+        "title": "MissingInfo"
+      },
+      "Notification": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "inspection_rejected",
+              "inspection_approved",
+              "change_approved"
+            ],
+            "title": "Kind"
+          },
+          "text_ar": {
+            "type": "string",
+            "title": "Text Ar"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "gemini",
+              "mock",
+              "template",
+              "unavailable"
+            ],
+            "title": "Source"
+          },
+          "facts": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Facts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "text_ar",
+          "source",
+          "facts"
+        ],
+        "title": "Notification"
+      },
+      "Payment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "month": {
+            "type": "integer",
+            "title": "Month"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "title": "Amount Sar"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "month",
+          "amount_sar",
+          "description"
+        ],
+        "title": "Payment"
+      },
+      "PaymentCreate": {
+        "properties": {
+          "month": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 0.0,
+            "title": "Month"
+          },
+          "amount_sar": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Amount Sar"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "month",
+          "amount_sar",
+          "description"
+        ],
+        "title": "PaymentCreate"
+      },
+      "PermitItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title_ar": {
+            "type": "string",
+            "title": "Title Ar"
+          },
+          "title_en": {
+            "type": "string",
+            "title": "Title En"
+          },
+          "owner": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "engineer",
+              "contractor"
+            ],
+            "title": "Owner"
+          },
+          "blocks_task_id": {
+            "type": "string",
+            "title": "Blocks Task Id"
+          },
+          "documents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Documents"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "to_verify"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title_ar",
+          "title_en",
+          "owner",
+          "blocks_task_id"
+        ],
+        "title": "PermitItem",
+        "description": "One step of معاملات البناء, linked to the schedule task it blocks."
+      },
+      "ProjectCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "input": {
+            "$ref": "#/components/schemas/ProjectInput"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "input"
+        ],
+        "title": "ProjectCreate"
+      },
+      "ProjectInput": {
+        "properties": {
+          "built_up_area_m2": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Built Up Area M2",
+            "description": "Built-up area (BUA), m²"
+          },
+          "plot_area_m2": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Plot Area M2",
+            "description": "Plot area, m²"
+          },
+          "floors": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Floors",
+            "description": "Above-ground floors (ground = 1)"
+          },
+          "has_roof_annex": {
+            "type": "boolean",
+            "title": "Has Roof Annex",
+            "default": true
+          },
+          "has_basement": {
+            "type": "boolean",
+            "title": "Has Basement",
+            "default": false
+          },
+          "finish_level": {
+            "type": "string",
+            "enum": [
+              "economy",
+              "standard",
+              "premium"
+            ],
+            "title": "Finish Level",
+            "default": "standard"
+          },
+          "city": {
+            "type": "string",
+            "title": "City",
+            "default": "Jeddah"
+          },
+          "budget_incl_vat_sar": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Incl Vat Sar"
+          },
+          "rate_overrides": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Rate Overrides",
+            "description": "BOM line id -> SAR rate; an override wins over the reference rate."
+          }
+        },
+        "type": "object",
+        "required": [
+          "built_up_area_m2",
+          "plot_area_m2",
+          "floors"
+        ],
+        "title": "ProjectInput",
+        "description": "What the user tells us about the villa. Fed to engine/estimate.py."
+      },
+      "ProjectRecord": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "input": {
+            "$ref": "#/components/schemas/ProjectInput"
+          },
+          "estimate": {
+            "$ref": "#/components/schemas/Estimate"
+          },
+          "task_progress_pct": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Task Progress Pct"
+          },
+          "status_day": {
+            "type": "integer",
+            "title": "Status Day",
+            "default": 0
+          },
+          "changes": {
+            "items": {
+              "$ref": "#/components/schemas/ChangeEvent"
+            },
+            "type": "array",
+            "title": "Changes"
+          },
+          "inspections": {
+            "items": {
+              "$ref": "#/components/schemas/Inspection"
+            },
+            "type": "array",
+            "title": "Inspections"
+          },
+          "payments": {
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "type": "array",
+            "title": "Payments"
+          },
+          "commitments": {
+            "items": {
+              "$ref": "#/components/schemas/Commitment"
+            },
+            "type": "array",
+            "title": "Commitments"
+          },
+          "illustrative": {
+            "type": "boolean",
+            "title": "Illustrative",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "input",
+          "estimate"
+        ],
+        "title": "ProjectRecord",
+        "description": "What the store keeps for one project. Schedule and dashboard are recomputed from this."
+      },
+      "ProjectSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "built_up_area_m2": {
+            "type": "integer",
+            "title": "Built Up Area M2"
+          },
+          "total_incl_vat_sar": {
+            "type": "integer",
+            "title": "Total Incl Vat Sar"
+          },
+          "illustrative": {
+            "type": "boolean",
+            "title": "Illustrative"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "city",
+          "built_up_area_m2",
+          "total_incl_vat_sar",
+          "illustrative"
+        ],
+        "title": "ProjectSummary"
+      },
+      "QuoteComparison": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "gemini",
+              "mock",
+              "template",
+              "unavailable"
+            ],
+            "title": "Source"
+          },
+          "supplier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplier"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/QuoteLineResult"
+            },
+            "type": "array",
+            "title": "Lines"
+          },
+          "quote_total_sar": {
+            "type": "integer",
+            "title": "Quote Total Sar"
+          },
+          "matched_bom_total_sar": {
+            "type": "integer",
+            "title": "Matched Bom Total Sar"
+          },
+          "variance_sar": {
+            "type": "integer",
+            "title": "Variance Sar"
+          },
+          "missing_scope": {
+            "items": {
+              "$ref": "#/components/schemas/BOMRef"
+            },
+            "type": "array",
+            "title": "Missing Scope"
+          },
+          "added_scope": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Added Scope"
+          },
+          "questions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Questions"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "lines",
+          "quote_total_sar",
+          "matched_bom_total_sar",
+          "variance_sar",
+          "missing_scope",
+          "added_scope",
+          "questions"
+        ],
+        "title": "QuoteComparison"
+      },
+      "QuoteLineResult": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "matched_bom_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matched Bom Id"
+          },
+          "quote_qty": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Qty"
+          },
+          "quote_rate_sar": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Rate Sar"
+          },
+          "quote_amount_sar": {
+            "type": "integer",
+            "title": "Quote Amount Sar"
+          },
+          "recomputed_amount_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recomputed Amount Sar",
+            "description": "qty × rate, computed in Python"
+          },
+          "arithmetic_ok": {
+            "type": "boolean",
+            "title": "Arithmetic Ok",
+            "default": true
+          },
+          "bom_amount_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bom Amount Sar"
+          },
+          "variance_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variance Sar"
+          },
+          "variance_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variance Pct"
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "quote_amount_sar"
+        ],
+        "title": "QuoteLineResult"
+      },
+      "ScheduleResult": {
+        "properties": {
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/ScheduledTask"
+            },
+            "type": "array",
+            "title": "Tasks"
+          },
+          "critical_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Critical Path"
+          },
+          "baseline_handover_day": {
+            "type": "integer",
+            "title": "Baseline Handover Day"
+          },
+          "forecast_handover_day": {
+            "type": "integer",
+            "title": "Forecast Handover Day"
+          },
+          "slip_days": {
+            "type": "integer",
+            "title": "Slip Days"
+          },
+          "construction_scale": {
+            "type": "number",
+            "title": "Construction Scale",
+            "description": "(BUA ÷ 600)^0.5 applied to construction tasks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tasks",
+          "critical_path",
+          "baseline_handover_day",
+          "forecast_handover_day",
+          "slip_days",
+          "construction_scale"
+        ],
+        "title": "ScheduleResult"
+      },
+      "ScheduledTask": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "phase": {
+            "type": "string",
+            "title": "Phase"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "task",
+              "milestone",
+              "hold_point"
+            ],
+            "title": "Type"
+          },
+          "baseline_start_day": {
+            "type": "integer",
+            "title": "Baseline Start Day"
+          },
+          "baseline_end_day": {
+            "type": "integer",
+            "title": "Baseline End Day"
+          },
+          "start_day": {
+            "type": "integer",
+            "title": "Start Day"
+          },
+          "end_day": {
+            "type": "integer",
+            "title": "End Day"
+          },
+          "duration_days": {
+            "type": "integer",
+            "title": "Duration Days"
+          },
+          "float_days": {
+            "type": "integer",
+            "title": "Float Days"
+          },
+          "is_critical": {
+            "type": "boolean",
+            "title": "Is Critical"
+          },
+          "is_hold_point": {
+            "type": "boolean",
+            "title": "Is Hold Point"
+          },
+          "depends_on": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Depends On"
+          },
+          "work_package_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Work Package Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "phase",
+          "name",
+          "type",
+          "baseline_start_day",
+          "baseline_end_day",
+          "start_day",
+          "end_day",
+          "duration_days",
+          "float_days",
+          "is_critical",
+          "is_hold_point",
+          "depends_on"
+        ],
+        "title": "ScheduledTask"
+      },
+      "TaskProgressResult": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "percent_complete": {
+            "type": "number",
+            "title": "Percent Complete"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "percent_complete"
+        ],
+        "title": "TaskProgressResult"
+      },
+      "TaskProgressUpdate": {
+        "properties": {
+          "percent_complete": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Percent Complete"
+          }
+        },
+        "type": "object",
+        "required": [
+          "percent_complete"
+        ],
+        "title": "TaskProgressUpdate"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WorkPackageBudget": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "months": {
+            "type": "string",
+            "title": "Months"
+          },
+          "materials_sar": {
+            "type": "integer",
+            "title": "Materials Sar"
+          },
+          "labor_factor": {
+            "type": "number",
+            "title": "Labor Factor"
+          },
+          "budget_sar": {
+            "type": "integer",
+            "title": "Budget Sar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "months",
+          "materials_sar",
+          "labor_factor",
+          "budget_sar"
+        ],
+        "title": "WorkPackageBudget"
+      }
+    }
+  }
+}

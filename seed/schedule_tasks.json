@@ -1,0 +1,402 @@
+{
+  "note": "Read off the case-study Gantt. Day 0 = start of Month 0 (pre-construction). Construction runs Month 1-14 (days ~30-456). Approximate to a few days.",
+  "status_date_day": 274,
+  "forecast_handover_slip_days": 7,
+  "tasks": [
+    {
+      "id": "T01",
+      "phase": "pre",
+      "name": "Intake, AI scope & missing-info register",
+      "start_day": 0,
+      "end_day": 8,
+      "critical": true,
+      "depends_on": [],
+      "type": "task"
+    },
+    {
+      "id": "T02",
+      "phase": "pre",
+      "name": "Soil investigation & design gaps closed",
+      "start_day": 5,
+      "end_day": 20,
+      "critical": true,
+      "depends_on": [
+        "T01"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T03",
+      "phase": "pre",
+      "name": "Permit & IFC drawings",
+      "start_day": 7,
+      "end_day": 27,
+      "critical": true,
+      "depends_on": [
+        "T01"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T04",
+      "phase": "pre",
+      "name": "Tender & contractor award",
+      "start_day": 18,
+      "end_day": 30,
+      "critical": true,
+      "depends_on": [
+        "T02"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T05",
+      "phase": "pre",
+      "name": "Baseline approved / notice to proceed",
+      "start_day": 30,
+      "end_day": 30,
+      "critical": true,
+      "depends_on": [
+        "T03",
+        "T04"
+      ],
+      "type": "milestone"
+    },
+    {
+      "id": "T06",
+      "phase": "site",
+      "name": "Mobilization & site setup",
+      "start_day": 30,
+      "end_day": 41,
+      "critical": true,
+      "depends_on": [
+        "T05"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T07",
+      "phase": "site",
+      "name": "Excavation",
+      "start_day": 41,
+      "end_day": 62,
+      "critical": true,
+      "depends_on": [
+        "T06"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T08",
+      "phase": "site",
+      "name": "Anti-termite, blinding, footings & necks",
+      "start_day": 62,
+      "end_day": 87,
+      "critical": true,
+      "depends_on": [
+        "T07"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T09",
+      "phase": "site",
+      "name": "Below-grade waterproofing & backfill",
+      "start_day": 87,
+      "end_day": 99,
+      "critical": false,
+      "depends_on": [
+        "T08"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T10",
+      "phase": "site",
+      "name": "Ground beams & slab on grade",
+      "start_day": 87,
+      "end_day": 101,
+      "critical": true,
+      "depends_on": [
+        "T08"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T11",
+      "phase": "structure",
+      "name": "Ground-floor columns & slab",
+      "start_day": 101,
+      "end_day": 136,
+      "critical": true,
+      "depends_on": [
+        "T10"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T12",
+      "phase": "structure",
+      "name": "First-floor columns & slab",
+      "start_day": 136,
+      "end_day": 171,
+      "critical": true,
+      "depends_on": [
+        "T11"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T13",
+      "phase": "structure",
+      "name": "Roof annex & parapets",
+      "start_day": 171,
+      "end_day": 188,
+      "critical": true,
+      "depends_on": [
+        "T12"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T14",
+      "phase": "structure",
+      "name": "Blockwork, both floors",
+      "start_day": 136,
+      "end_day": 192,
+      "critical": false,
+      "depends_on": [
+        "T11"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T15",
+      "phase": "structure",
+      "name": "Structure complete",
+      "start_day": 188,
+      "end_day": 188,
+      "critical": true,
+      "depends_on": [
+        "T13"
+      ],
+      "type": "milestone"
+    },
+    {
+      "id": "T16",
+      "phase": "mep",
+      "name": "Electrical subcontract award",
+      "start_day": 182,
+      "end_day": 190,
+      "critical": true,
+      "depends_on": [],
+      "type": "task"
+    },
+    {
+      "id": "T17",
+      "phase": "mep",
+      "name": "Plumbing & drainage first fix",
+      "start_day": 188,
+      "end_day": 230,
+      "critical": false,
+      "depends_on": [
+        "T15"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T18",
+      "phase": "mep",
+      "name": "Electrical conduits & wiring first fix",
+      "start_day": 190,
+      "end_day": 246,
+      "critical": true,
+      "depends_on": [
+        "T16",
+        "T15"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T19",
+      "phase": "mep",
+      "name": "HVAC refrigerant piping & ducts",
+      "start_day": 199,
+      "end_day": 241,
+      "critical": false,
+      "depends_on": [
+        "T15"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T20",
+      "phase": "mep",
+      "name": "Tanks, pumps & septic tank",
+      "start_day": 220,
+      "end_day": 248,
+      "critical": false,
+      "depends_on": [
+        "T17"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T21",
+      "phase": "mep",
+      "name": "Pressure test hold point",
+      "start_day": 258,
+      "end_day": 258,
+      "critical": true,
+      "depends_on": [
+        "T17",
+        "T20"
+      ],
+      "type": "hold_point"
+    },
+    {
+      "id": "T22",
+      "phase": "finishes",
+      "name": "Internal plaster",
+      "start_day": 245,
+      "end_day": 287,
+      "critical": true,
+      "depends_on": [
+        "T18"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T23",
+      "phase": "finishes",
+      "name": "Exterior coating / cladding",
+      "start_day": 276,
+      "end_day": 332,
+      "critical": false,
+      "depends_on": [
+        "T14"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T24",
+      "phase": "finishes",
+      "name": "Gypsum false ceilings",
+      "start_day": 287,
+      "end_day": 322,
+      "critical": true,
+      "depends_on": [
+        "T22"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T25",
+      "phase": "finishes",
+      "name": "Aluminum windows & doors",
+      "start_day": 297,
+      "end_day": 332,
+      "critical": false,
+      "depends_on": [
+        "T22"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T26",
+      "phase": "finishes",
+      "name": "Floor & wall tiling",
+      "start_day": 311,
+      "end_day": 360,
+      "critical": true,
+      "depends_on": [
+        "T24",
+        "T21"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T27",
+      "phase": "finishes",
+      "name": "Painting",
+      "start_day": 354,
+      "end_day": 389,
+      "critical": true,
+      "depends_on": [
+        "T26"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T28",
+      "phase": "finishes",
+      "name": "Kitchen, sanitary fixtures, 2nd fix & AC units",
+      "start_day": 360,
+      "end_day": 396,
+      "critical": true,
+      "depends_on": [
+        "T26"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T29",
+      "phase": "external",
+      "name": "Boundary wall, gate & paving",
+      "start_day": 360,
+      "end_day": 402,
+      "critical": false,
+      "depends_on": [],
+      "type": "task"
+    },
+    {
+      "id": "T30",
+      "phase": "external",
+      "name": "Landscape & irrigation",
+      "start_day": 396,
+      "end_day": 423,
+      "critical": false,
+      "depends_on": [
+        "T29"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T31",
+      "phase": "external",
+      "name": "Testing & commissioning",
+      "start_day": 410,
+      "end_day": 431,
+      "critical": true,
+      "depends_on": [
+        "T28"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T32",
+      "phase": "external",
+      "name": "Snagging & punch list",
+      "start_day": 427,
+      "end_day": 448,
+      "critical": true,
+      "depends_on": [
+        "T31",
+        "T27"
+      ],
+      "type": "task"
+    },
+    {
+      "id": "T33",
+      "phase": "external",
+      "name": "Handover (baseline end of M14)",
+      "start_day": 456,
+      "end_day": 456,
+      "critical": true,
+      "depends_on": [
+        "T32"
+      ],
+      "type": "milestone"
+    }
+  ]
+}

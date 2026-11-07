@@ -1,0 +1,628 @@
+{
+  "tasks": [
+    {
+      "id": "T01",
+      "phase": "pre",
+      "name": "Intake, AI scope & missing-info register",
+      "type": "task",
+      "baseline_start_day": 0,
+      "baseline_end_day": 8,
+      "start_day": 0,
+      "end_day": 8,
+      "duration_days": 8,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [],
+      "work_package_id": null
+    },
+    {
+      "id": "T02",
+      "phase": "pre",
+      "name": "Soil investigation & design gaps closed",
+      "type": "task",
+      "baseline_start_day": 5,
+      "baseline_end_day": 20,
+      "start_day": 5,
+      "end_day": 20,
+      "duration_days": 15,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T01"
+      ],
+      "work_package_id": null
+    },
+    {
+      "id": "T03",
+      "phase": "pre",
+      "name": "Permit & IFC drawings",
+      "type": "task",
+      "baseline_start_day": 7,
+      "baseline_end_day": 27,
+      "start_day": 7,
+      "end_day": 27,
+      "duration_days": 20,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T01"
+      ],
+      "work_package_id": null
+    },
+    {
+      "id": "T04",
+      "phase": "pre",
+      "name": "Tender & contractor award",
+      "type": "task",
+      "baseline_start_day": 18,
+      "baseline_end_day": 30,
+      "start_day": 18,
+      "end_day": 30,
+      "duration_days": 12,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T02"
+      ],
+      "work_package_id": null
+    },
+    {
+      "id": "T05",
+      "phase": "pre",
+      "name": "Baseline approved / notice to proceed",
+      "type": "milestone",
+      "baseline_start_day": 30,
+      "baseline_end_day": 30,
+      "start_day": 30,
+      "end_day": 30,
+      "duration_days": 0,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T03",
+        "T04"
+      ],
+      "work_package_id": null
+    },
+    {
+      "id": "T06",
+      "phase": "site",
+      "name": "Mobilization & site setup",
+      "type": "task",
+      "baseline_start_day": 30,
+      "baseline_end_day": 41,
+      "start_day": 30,
+      "end_day": 41,
+      "duration_days": 11,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T05"
+      ],
+      "work_package_id": "WP1_site_foundations"
+    },
+    {
+      "id": "T07",
+      "phase": "site",
+      "name": "Excavation",
+      "type": "task",
+      "baseline_start_day": 41,
+      "baseline_end_day": 62,
+      "start_day": 41,
+      "end_day": 62,
+      "duration_days": 21,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T06"
+      ],
+      "work_package_id": "WP1_site_foundations"
+    },
+    {
+      "id": "T08",
+      "phase": "site",
+      "name": "Anti-termite, blinding, footings & necks",
+      "type": "task",
+      "baseline_start_day": 62,
+      "baseline_end_day": 87,
+      "start_day": 62,
+      "end_day": 94,
+      "duration_days": 32,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T07"
+      ],
+      "work_package_id": "WP1_site_foundations"
+    },
+    {
+      "id": "T09",
+      "phase": "site",
+      "name": "Below-grade waterproofing & backfill",
+      "type": "task",
+      "baseline_start_day": 87,
+      "baseline_end_day": 99,
+      "start_day": 94,
+      "end_day": 106,
+      "duration_days": 12,
+      "float_days": 357,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T08"
+      ],
+      "work_package_id": "WP1_site_foundations"
+    },
+    {
+      "id": "T10",
+      "phase": "site",
+      "name": "Ground beams & slab on grade",
+      "type": "task",
+      "baseline_start_day": 87,
+      "baseline_end_day": 101,
+      "start_day": 94,
+      "end_day": 108,
+      "duration_days": 14,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T08"
+      ],
+      "work_package_id": "WP1_site_foundations"
+    },
+    {
+      "id": "T11",
+      "phase": "structure",
+      "name": "Ground-floor columns & slab",
+      "type": "task",
+      "baseline_start_day": 101,
+      "baseline_end_day": 136,
+      "start_day": 108,
+      "end_day": 143,
+      "duration_days": 35,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T10"
+      ],
+      "work_package_id": "WP2_structure"
+    },
+    {
+      "id": "T12",
+      "phase": "structure",
+      "name": "First-floor columns & slab",
+      "type": "task",
+      "baseline_start_day": 136,
+      "baseline_end_day": 171,
+      "start_day": 143,
+      "end_day": 178,
+      "duration_days": 35,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T11"
+      ],
+      "work_package_id": "WP2_structure"
+    },
+    {
+      "id": "T13",
+      "phase": "structure",
+      "name": "Roof annex & parapets",
+      "type": "task",
+      "baseline_start_day": 171,
+      "baseline_end_day": 188,
+      "start_day": 178,
+      "end_day": 195,
+      "duration_days": 17,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T12"
+      ],
+      "work_package_id": "WP2_structure"
+    },
+    {
+      "id": "T14",
+      "phase": "structure",
+      "name": "Blockwork, both floors",
+      "type": "task",
+      "baseline_start_day": 136,
+      "baseline_end_day": 192,
+      "start_day": 143,
+      "end_day": 199,
+      "duration_days": 56,
+      "float_days": 124,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T11"
+      ],
+      "work_package_id": "WP2_structure"
+    },
+    {
+      "id": "T15",
+      "phase": "structure",
+      "name": "Structure complete",
+      "type": "milestone",
+      "baseline_start_day": 188,
+      "baseline_end_day": 188,
+      "start_day": 195,
+      "end_day": 195,
+      "duration_days": 0,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T13"
+      ],
+      "work_package_id": "WP2_structure"
+    },
+    {
+      "id": "T16",
+      "phase": "mep",
+      "name": "Electrical subcontract award",
+      "type": "task",
+      "baseline_start_day": 182,
+      "baseline_end_day": 190,
+      "start_day": 182,
+      "end_day": 190,
+      "duration_days": 8,
+      "float_days": 7,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T17",
+      "phase": "mep",
+      "name": "Plumbing & drainage first fix",
+      "type": "task",
+      "baseline_start_day": 188,
+      "baseline_end_day": 230,
+      "start_day": 195,
+      "end_day": 237,
+      "duration_days": 42,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T15"
+      ],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T18",
+      "phase": "mep",
+      "name": "Electrical conduits & wiring first fix",
+      "type": "task",
+      "baseline_start_day": 190,
+      "baseline_end_day": 246,
+      "start_day": 197,
+      "end_day": 253,
+      "duration_days": 56,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T16",
+        "T15"
+      ],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T19",
+      "phase": "mep",
+      "name": "HVAC refrigerant piping & ducts",
+      "type": "task",
+      "baseline_start_day": 199,
+      "baseline_end_day": 241,
+      "start_day": 206,
+      "end_day": 248,
+      "duration_days": 42,
+      "float_days": 215,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T15"
+      ],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T20",
+      "phase": "mep",
+      "name": "Tanks, pumps & septic tank",
+      "type": "task",
+      "baseline_start_day": 220,
+      "baseline_end_day": 248,
+      "start_day": 227,
+      "end_day": 255,
+      "duration_days": 28,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T17"
+      ],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T21",
+      "phase": "mep",
+      "name": "Pressure test hold point",
+      "type": "hold_point",
+      "baseline_start_day": 258,
+      "baseline_end_day": 258,
+      "start_day": 265,
+      "end_day": 265,
+      "duration_days": 0,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": true,
+      "depends_on": [
+        "T17",
+        "T20"
+      ],
+      "work_package_id": "WP3_mep"
+    },
+    {
+      "id": "T22",
+      "phase": "finishes",
+      "name": "Internal plaster",
+      "type": "task",
+      "baseline_start_day": 245,
+      "baseline_end_day": 287,
+      "start_day": 252,
+      "end_day": 294,
+      "duration_days": 42,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T18"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T23",
+      "phase": "finishes",
+      "name": "Exterior coating / cladding",
+      "type": "task",
+      "baseline_start_day": 276,
+      "baseline_end_day": 332,
+      "start_day": 283,
+      "end_day": 339,
+      "duration_days": 56,
+      "float_days": 124,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T14"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T24",
+      "phase": "finishes",
+      "name": "Gypsum false ceilings",
+      "type": "task",
+      "baseline_start_day": 287,
+      "baseline_end_day": 322,
+      "start_day": 294,
+      "end_day": 329,
+      "duration_days": 35,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T22"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T25",
+      "phase": "finishes",
+      "name": "Aluminum windows & doors",
+      "type": "task",
+      "baseline_start_day": 297,
+      "baseline_end_day": 332,
+      "start_day": 304,
+      "end_day": 339,
+      "duration_days": 35,
+      "float_days": 124,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T22"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T26",
+      "phase": "finishes",
+      "name": "Floor & wall tiling",
+      "type": "task",
+      "baseline_start_day": 311,
+      "baseline_end_day": 360,
+      "start_day": 318,
+      "end_day": 367,
+      "duration_days": 49,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T24",
+        "T21"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T27",
+      "phase": "finishes",
+      "name": "Painting",
+      "type": "task",
+      "baseline_start_day": 354,
+      "baseline_end_day": 389,
+      "start_day": 361,
+      "end_day": 396,
+      "duration_days": 35,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T26"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T28",
+      "phase": "finishes",
+      "name": "Kitchen, sanitary fixtures, 2nd fix & AC units",
+      "type": "task",
+      "baseline_start_day": 360,
+      "baseline_end_day": 396,
+      "start_day": 367,
+      "end_day": 403,
+      "duration_days": 36,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T26"
+      ],
+      "work_package_id": "WP4_finishes"
+    },
+    {
+      "id": "T29",
+      "phase": "external",
+      "name": "Boundary wall, gate & paving",
+      "type": "task",
+      "baseline_start_day": 360,
+      "baseline_end_day": 402,
+      "start_day": 360,
+      "end_day": 402,
+      "duration_days": 42,
+      "float_days": 40,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [],
+      "work_package_id": "WP5_external"
+    },
+    {
+      "id": "T30",
+      "phase": "external",
+      "name": "Landscape & irrigation",
+      "type": "task",
+      "baseline_start_day": 396,
+      "baseline_end_day": 423,
+      "start_day": 396,
+      "end_day": 423,
+      "duration_days": 27,
+      "float_days": 40,
+      "is_critical": false,
+      "is_hold_point": false,
+      "depends_on": [
+        "T29"
+      ],
+      "work_package_id": "WP5_external"
+    },
+    {
+      "id": "T31",
+      "phase": "external",
+      "name": "Testing & commissioning",
+      "type": "task",
+      "baseline_start_day": 410,
+      "baseline_end_day": 431,
+      "start_day": 417,
+      "end_day": 438,
+      "duration_days": 21,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T28"
+      ],
+      "work_package_id": "WP5_external"
+    },
+    {
+      "id": "T32",
+      "phase": "external",
+      "name": "Snagging & punch list",
+      "type": "task",
+      "baseline_start_day": 427,
+      "baseline_end_day": 448,
+      "start_day": 434,
+      "end_day": 455,
+      "duration_days": 21,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T31",
+        "T27"
+      ],
+      "work_package_id": "WP5_external"
+    },
+    {
+      "id": "T33",
+      "phase": "external",
+      "name": "Handover (baseline end of M14)",
+      "type": "milestone",
+      "baseline_start_day": 456,
+      "baseline_end_day": 456,
+      "start_day": 463,
+      "end_day": 463,
+      "duration_days": 0,
+      "float_days": 0,
+      "is_critical": true,
+      "is_hold_point": false,
+      "depends_on": [
+        "T32"
+      ],
+      "work_package_id": "WP5_external"
+    }
+  ],
+  "critical_path": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T15",
+    "T17",
+    "T18",
+    "T20",
+    "T22",
+    "T21",
+    "T24",
+    "T26",
+    "T27",
+    "T28",
+    "T31",
+    "T32",
+    "T33"
+  ],
+  "baseline_handover_day": 456,
+  "forecast_handover_day": 463,
+  "slip_days": 7,
+  "construction_scale": 1.0
+}

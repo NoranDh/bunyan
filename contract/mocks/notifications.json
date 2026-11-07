@@ -1,0 +1,44 @@
+[
+  {
+    "id": "N-HP-PLB-01-approved",
+    "kind": "inspection_approved",
+    "text_ar": "تمت الموافقة على الفحص رقم HP-PLB-01، ويمكن المتابعة في الأعمال التالية.",
+    "source": "template",
+    "facts": {
+      "inspection_id": "HP-PLB-01"
+    }
+  },
+  {
+    "id": "N-CH-01-approved",
+    "kind": "change_approved",
+    "text_ar": "تمت الموافقة على تعديل بتكلفة 18,000 ريال وتأخير الجدول 7 يوم.",
+    "source": "template",
+    "facts": {
+      "cost_sar": 18000,
+      "days": 7,
+      "title": "Revised foundation detail (soil differs from survey)"
+    }
+  },
+  {
+    "id": "N-CH-02-approved",
+    "kind": "change_approved",
+    "text_ar": "تمت الموافقة على تعديل بتكلفة 4,000 ريال.",
+    "source": "template",
+    "facts": {
+      "cost_sar": 4000,
+      "days": 0,
+      "title": "Rebar delivery could slip 12 days; alternative supplier expedited"
+    }
+  },
+  {
+    "id": "N-CH-03-approved",
+    "kind": "change_approved",
+    "text_ar": "تمت الموافقة على تعديل بتكلفة 12,000 ريال.",
+    "source": "template",
+    "facts": {
+      "cost_sar": 12000,
+      "days": 0,
+      "title": "Electrical quote 275,000 vs 230,000 allowance; normalized to 242,000"
+    }
+  }
+]

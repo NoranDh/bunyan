@@ -1,0 +1,98 @@
+{
+  "source": "mock",
+  "supplier": "Mock Electrical Co. (fixture)",
+  "lines": [
+    {
+      "description": "Power and lighting cables",
+      "matched_bom_id": "M28",
+      "quote_qty": 4500.0,
+      "quote_rate_sar": 12.0,
+      "quote_amount_sar": 54000,
+      "recomputed_amount_sar": 54000,
+      "arithmetic_ok": true,
+      "bom_amount_sar": 49500,
+      "variance_sar": 4500,
+      "variance_pct": 9.1
+    },
+    {
+      "description": "Conduits, fittings and boxes",
+      "matched_bom_id": "M29",
+      "quote_qty": 3500.0,
+      "quote_rate_sar": 5.0,
+      "quote_amount_sar": 17500,
+      "recomputed_amount_sar": 17500,
+      "arithmetic_ok": true,
+      "bom_amount_sar": 17500,
+      "variance_sar": 0,
+      "variance_pct": 0.0
+    },
+    {
+      "description": "Distribution boards and breakers",
+      "matched_bom_id": "M30",
+      "quote_qty": 5.0,
+      "quote_rate_sar": 7500.0,
+      "quote_amount_sar": 37500,
+      "recomputed_amount_sar": 37500,
+      "arithmetic_ok": true,
+      "bom_amount_sar": 37500,
+      "variance_sar": 0,
+      "variance_pct": 0.0
+    },
+    {
+      "description": "Switches, sockets and accessories",
+      "matched_bom_id": "M31",
+      "quote_qty": 200.0,
+      "quote_rate_sar": 85.0,
+      "quote_amount_sar": 17000,
+      "recomputed_amount_sar": 17000,
+      "arithmetic_ok": true,
+      "bom_amount_sar": 17000,
+      "variance_sar": 0,
+      "variance_pct": 0.0
+    },
+    {
+      "description": "Lighting fixtures",
+      "matched_bom_id": "M32",
+      "quote_qty": 130.0,
+      "quote_rate_sar": 230.0,
+      "quote_amount_sar": 29900,
+      "recomputed_amount_sar": 29900,
+      "arithmetic_ok": true,
+      "bom_amount_sar": 29900,
+      "variance_sar": 0,
+      "variance_pct": 0.0
+    },
+    {
+      "description": "Smart home automation (not in BOM)",
+      "matched_bom_id": null,
+      "quote_qty": 1.0,
+      "quote_rate_sar": 30000.0,
+      "quote_amount_sar": 30000,
+      "recomputed_amount_sar": 30000,
+      "arithmetic_ok": true,
+      "bom_amount_sar": null,
+      "variance_sar": null,
+      "variance_pct": null
+    }
+  ],
+  "quote_total_sar": 185900,
+  "matched_bom_total_sar": 151400,
+  "variance_sar": 4500,
+  "missing_scope": [
+    {
+      "id": "M33",
+      "item": "Data / low-current cabling",
+      "category": "electrical",
+      "amount_sar": 6300
+    }
+  ],
+  "added_scope": [
+    "Smart home automation (not in BOM)"
+  ],
+  "questions": [
+    "Ask the contractor to explain the 4,500 SAR difference on 'Power / lighting cables'.",
+    "Confirm whether 'Smart home automation (not in BOM)' is in scope and whether it is priced elsewhere.",
+    "Ask whether 'Data / low-current cabling' is excluded or priced in another package."
+  ],
+  "note": null
+}

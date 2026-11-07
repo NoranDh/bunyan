@@ -1,0 +1,153 @@
+{
+  "status_day": 274,
+  "planned_progress_pct": 66.78,
+  "actual_progress_pct": 58.33,
+  "budget_excl_vat_sar": 2310000,
+  "work_packages_baseline_sar": 2100000,
+  "approved_changes_sar": 34000,
+  "risk_forecast_sar": 76000,
+  "forecast_final_cost_sar": 2210000,
+  "forecast_vs_budget_sar": 100000,
+  "paid_sar": 1150000,
+  "committed_unpaid_sar": 640000,
+  "remaining_uncommitted_sar": 420000,
+  "contingency_start_sar": 210000,
+  "contingency_left_sar": 100000,
+  "contingency_ledger": [
+    {
+      "label": "Revised foundation detail (soil differs from survey)",
+      "amount_sar": 18000,
+      "balance_after_sar": 192000
+    },
+    {
+      "label": "Rebar delivery could slip 12 days; alternative supplier expedited",
+      "amount_sar": 4000,
+      "balance_after_sar": 188000
+    },
+    {
+      "label": "Electrical quote 275,000 vs 230,000 allowance; normalized to 242,000",
+      "amount_sar": 12000,
+      "balance_after_sar": 176000
+    },
+    {
+      "label": "Forecast for emerging risks",
+      "amount_sar": 76000,
+      "balance_after_sar": 100000
+    }
+  ],
+  "baseline_handover_day": 456,
+  "forecast_handover_day": 463,
+  "handover_slip_days": 7,
+  "critical_path": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T15",
+    "T17",
+    "T18",
+    "T20",
+    "T22",
+    "T21",
+    "T24",
+    "T26",
+    "T27",
+    "T28",
+    "T31",
+    "T32",
+    "T33"
+  ],
+  "change_log": [
+    {
+      "id": "CH-01",
+      "month": 2,
+      "type": "change_request",
+      "title": "Revised foundation detail (soil differs from survey)",
+      "cost_sar": 18000,
+      "days": 7,
+      "days_avoided": 0,
+      "approved_by": "engineer",
+      "affects_task_id": "T08",
+      "forecast": false
+    },
+    {
+      "id": "CH-02",
+      "month": 5,
+      "type": "procurement_risk",
+      "title": "Rebar delivery could slip 12 days; alternative supplier expedited",
+      "cost_sar": 4000,
+      "days": 0,
+      "days_avoided": 8,
+      "approved_by": "engineer",
+      "affects_task_id": null,
+      "forecast": false
+    },
+    {
+      "id": "CH-03",
+      "month": 6,
+      "type": "quote_variance",
+      "title": "Electrical quote 275,000 vs 230,000 allowance; normalized to 242,000",
+      "cost_sar": 12000,
+      "days": 0,
+      "days_avoided": 0,
+      "approved_by": "engineer",
+      "affects_task_id": null,
+      "forecast": false
+    },
+    {
+      "id": "CH-04",
+      "month": 8,
+      "type": "risk_forecast",
+      "title": "Forecast for emerging risks",
+      "cost_sar": 76000,
+      "days": 0,
+      "days_avoided": 0,
+      "approved_by": null,
+      "affects_task_id": null,
+      "forecast": true
+    }
+  ],
+  "inspections": [
+    {
+      "id": "HP-PLB-01",
+      "month": 8,
+      "task_id": "T21",
+      "title": "Bathroom plumbing pressure test",
+      "history": [
+        {
+          "status": "submitted",
+          "by": "contractor",
+          "reason": null,
+          "note": null,
+          "evidence": [
+            "pressure_test_record",
+            "photos"
+          ]
+        },
+        {
+          "status": "rejected",
+          "by": "engineer",
+          "reason": "Joint detail does not match approved design",
+          "note": null,
+          "evidence": []
+        },
+        {
+          "status": "approved",
+          "by": "engineer",
+          "reason": null,
+          "note": "Joint fixed and retested before wall closure",
+          "evidence": []
+        }
+      ],
+      "status": "approved"
+    }
+  ]
+}

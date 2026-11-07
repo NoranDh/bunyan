@@ -1,0 +1,550 @@
+{
+  "project": {
+    "built_up_area_m2": 600,
+    "plot_area_m2": 500,
+    "floors": 2,
+    "has_roof_annex": true,
+    "has_basement": false,
+    "finish_level": "standard",
+    "city": "Jeddah",
+    "budget_incl_vat_sar": 2656500,
+    "rate_overrides": {}
+  },
+  "bom_lines": [
+    {
+      "id": "M01",
+      "category": "civil_structural",
+      "item": "Ready-mix concrete (various grades)",
+      "unit": "m³",
+      "qty": 310.0,
+      "rate_sar": 320.0,
+      "amount_sar": 99200,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP1_site_foundations": 0.35,
+        "WP2_structure": 0.65
+      }
+    },
+    {
+      "id": "M02",
+      "category": "civil_structural",
+      "item": "Reinforcement steel bars",
+      "unit": "t",
+      "qty": 48.0,
+      "rate_sar": 3300.0,
+      "amount_sar": 158400,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP1_site_foundations": 0.35,
+        "WP2_structure": 0.65
+      }
+    },
+    {
+      "id": "M03",
+      "category": "civil_structural",
+      "item": "Concrete masonry blocks",
+      "unit": "pc",
+      "qty": 14500.0,
+      "rate_sar": 6.0,
+      "amount_sar": 87000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP2_structure": 1.0
+      }
+    },
+    {
+      "id": "M04",
+      "category": "civil_structural",
+      "item": "Cement for mortar / plaster",
+      "unit": "bag",
+      "qty": 1350.0,
+      "rate_sar": 17.0,
+      "amount_sar": 22950,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP2_structure": 1.0
+      }
+    },
+    {
+      "id": "M05",
+      "category": "civil_structural",
+      "item": "Washed sand",
+      "unit": "m³",
+      "qty": 180.0,
+      "rate_sar": 75.0,
+      "amount_sar": 13500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP2_structure": 1.0
+      }
+    },
+    {
+      "id": "M06",
+      "category": "civil_structural",
+      "item": "Crushed aggregate / backfill",
+      "unit": "m³",
+      "qty": 210.0,
+      "rate_sar": 65.0,
+      "amount_sar": 13650,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP1_site_foundations": 1.0
+      }
+    },
+    {
+      "id": "M07",
+      "category": "civil_structural",
+      "item": "Below-grade waterproofing membrane",
+      "unit": "m²",
+      "qty": 550.0,
+      "rate_sar": 30.0,
+      "amount_sar": 16500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP1_site_foundations": 1.0
+      }
+    },
+    {
+      "id": "M08",
+      "category": "civil_structural",
+      "item": "Roof thermal / waterproof insulation",
+      "unit": "m²",
+      "qty": 300.0,
+      "rate_sar": 65.0,
+      "amount_sar": 19500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP2_structure": 1.0
+      }
+    },
+    {
+      "id": "M09",
+      "category": "civil_structural",
+      "item": "Anti-termite soil treatment",
+      "unit": "m²",
+      "qty": 320.0,
+      "rate_sar": 12.0,
+      "amount_sar": 3840,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP1_site_foundations": 1.0
+      }
+    },
+    {
+      "id": "M10",
+      "category": "architectural",
+      "item": "Internal plaster materials",
+      "unit": "m²",
+      "qty": 1600.0,
+      "rate_sar": 24.0,
+      "amount_sar": 38400,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M11",
+      "category": "architectural",
+      "item": "Interior floor porcelain / tile",
+      "unit": "m²",
+      "qty": 520.0,
+      "rate_sar": 90.0,
+      "amount_sar": 46800,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M12",
+      "category": "architectural",
+      "item": "Wall tiles (wet areas)",
+      "unit": "m²",
+      "qty": 300.0,
+      "rate_sar": 80.0,
+      "amount_sar": 24000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M13",
+      "category": "architectural",
+      "item": "Interior paint system",
+      "unit": "m²",
+      "qty": 2200.0,
+      "rate_sar": 15.0,
+      "amount_sar": 33000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M14",
+      "category": "architectural",
+      "item": "Exterior coating / cladding",
+      "unit": "m²",
+      "qty": 600.0,
+      "rate_sar": 65.0,
+      "amount_sar": 39000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M15",
+      "category": "architectural",
+      "item": "Interior doors and hardware",
+      "unit": "set",
+      "qty": 24.0,
+      "rate_sar": 1250.0,
+      "amount_sar": 30000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M16",
+      "category": "architectural",
+      "item": "Exterior / entrance doors",
+      "unit": "set",
+      "qty": 4.0,
+      "rate_sar": 3800.0,
+      "amount_sar": 15200,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M17",
+      "category": "architectural",
+      "item": "Aluminum windows and glazing",
+      "unit": "m²",
+      "qty": 120.0,
+      "rate_sar": 650.0,
+      "amount_sar": 78000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M18",
+      "category": "architectural",
+      "item": "Kitchen cabinetry / counters",
+      "unit": "lot",
+      "qty": 1.0,
+      "rate_sar": 45000.0,
+      "amount_sar": 45000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M19",
+      "category": "architectural",
+      "item": "Sanitary fixtures / accessories",
+      "unit": "set",
+      "qty": 12.0,
+      "rate_sar": 1700.0,
+      "amount_sar": 20400,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M20",
+      "category": "architectural",
+      "item": "Gypsum board false ceilings",
+      "unit": "m²",
+      "qty": 450.0,
+      "rate_sar": 55.0,
+      "amount_sar": 24750,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP4_finishes": 1.0
+      }
+    },
+    {
+      "id": "M21",
+      "category": "plumbing_drainage",
+      "item": "PPR water piping, mixed sizes",
+      "unit": "m",
+      "qty": 850.0,
+      "rate_sar": 22.0,
+      "amount_sar": 18700,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M22",
+      "category": "plumbing_drainage",
+      "item": "Drainage / vent piping, mixed sizes",
+      "unit": "m",
+      "qty": 650.0,
+      "rate_sar": 28.0,
+      "amount_sar": 18200,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M23",
+      "category": "plumbing_drainage",
+      "item": "Water pumps and controls",
+      "unit": "set",
+      "qty": 2.0,
+      "rate_sar": 4500.0,
+      "amount_sar": 9000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M24",
+      "category": "plumbing_drainage",
+      "item": "Water tanks",
+      "unit": "set",
+      "qty": 2.0,
+      "rate_sar": 5500.0,
+      "amount_sar": 11000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M25",
+      "category": "plumbing_drainage",
+      "item": "Septic tank / sewer connection",
+      "unit": "lot",
+      "qty": 1.0,
+      "rate_sar": 18000.0,
+      "amount_sar": 18000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M26",
+      "category": "hvac",
+      "item": "Split / ducted AC equipment",
+      "unit": "TR",
+      "qty": 28.0,
+      "rate_sar": 4500.0,
+      "amount_sar": 126000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M27",
+      "category": "hvac",
+      "item": "Refrigerant piping and insulation",
+      "unit": "m",
+      "qty": 500.0,
+      "rate_sar": 60.0,
+      "amount_sar": 30000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M28",
+      "category": "electrical",
+      "item": "Power / lighting cables",
+      "unit": "m",
+      "qty": 4500.0,
+      "rate_sar": 11.0,
+      "amount_sar": 49500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M29",
+      "category": "electrical",
+      "item": "Conduits, fittings and boxes",
+      "unit": "m",
+      "qty": 3500.0,
+      "rate_sar": 5.0,
+      "amount_sar": 17500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M30",
+      "category": "electrical",
+      "item": "Distribution boards / breakers",
+      "unit": "set",
+      "qty": 5.0,
+      "rate_sar": 7500.0,
+      "amount_sar": 37500,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M31",
+      "category": "electrical",
+      "item": "Switches, sockets and accessories",
+      "unit": "point",
+      "qty": 200.0,
+      "rate_sar": 85.0,
+      "amount_sar": 17000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M32",
+      "category": "electrical",
+      "item": "Lighting fixtures",
+      "unit": "pc",
+      "qty": 130.0,
+      "rate_sar": 230.0,
+      "amount_sar": 29900,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M33",
+      "category": "electrical",
+      "item": "Data / low-current cabling",
+      "unit": "m",
+      "qty": 900.0,
+      "rate_sar": 7.0,
+      "amount_sar": 6300,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP3_mep": 1.0
+      }
+    },
+    {
+      "id": "M34",
+      "category": "external_works",
+      "item": "Paving / hardscape",
+      "unit": "m²",
+      "qty": 220.0,
+      "rate_sar": 105.0,
+      "amount_sar": 23100,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP5_external": 1.0
+      }
+    },
+    {
+      "id": "M35",
+      "category": "external_works",
+      "item": "Boundary gate / metalwork",
+      "unit": "lot",
+      "qty": 1.0,
+      "rate_sar": 24000.0,
+      "amount_sar": 24000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP5_external": 1.0
+      }
+    },
+    {
+      "id": "M36",
+      "category": "external_works",
+      "item": "Landscape irrigation / planting",
+      "unit": "lot",
+      "qty": 1.0,
+      "rate_sar": 18000.0,
+      "amount_sar": 18000,
+      "rate_overridden": false,
+      "work_package_split": {
+        "WP5_external": 1.0
+      }
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WP1_site_foundations",
+      "name": "Site preparation & foundations",
+      "months": "1-2",
+      "materials_sar": 124150,
+      "labor_factor": 2.4164317358034637,
+      "budget_sar": 300000
+    },
+    {
+      "id": "WP2_structure",
+      "name": "Structural works",
+      "months": "3-5",
+      "materials_sar": 310390,
+      "labor_factor": 1.5464415735043011,
+      "budget_sar": 480000
+    },
+    {
+      "id": "WP3_mep",
+      "name": "MEP systems",
+      "months": "6-8",
+      "materials_sar": 388600,
+      "labor_factor": 1.4410705095213587,
+      "budget_sar": 560000
+    },
+    {
+      "id": "WP4_finishes",
+      "name": "Architectural finishes",
+      "months": "8-12",
+      "materials_sar": 394550,
+      "labor_factor": 1.5714104676213407,
+      "budget_sar": 620000
+    },
+    {
+      "id": "WP5_external",
+      "name": "External works & handover",
+      "months": "12-14",
+      "materials_sar": 65100,
+      "labor_factor": 2.150537634408602,
+      "budget_sar": 140000
+    }
+  ],
+  "materials_total_sar": 1282790,
+  "work_packages_total_sar": 2100000,
+  "contingency_pct": 0.1,
+  "contingency_sar": 210000,
+  "subtotal_excl_vat_sar": 2310000,
+  "vat_pct": 0.15,
+  "vat_sar": 346500,
+  "total_incl_vat_sar": 2656500,
+  "cost_per_m2_excl_vat_sar": 3850,
+  "budget_fit": {
+    "budget_incl_vat_sar": 2656500,
+    "difference_sar": 0,
+    "status": "on_budget"
+  },
+  "assumptions": [
+    "Quantities are reference ratios × BUA (seed/bom_reference_600m2.csv).",
+    "Labor factors calibrated once from the reference work-package budgets.",
+    "Contingency 10% of work packages; VAT 15% shown separately.",
+    "Rates are SAR excluding VAT and are indicative, not supplier quotes.",
+    "Footprint = BUA ÷ floors = 300 m²; yard = 200 m² (reference 200 m²) — drives paving, boundary and landscape."
+  ],
+  "warnings": [],
+  "disclaimer": "estimate — requires review by a licensed engineering office"
+}

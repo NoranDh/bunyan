@@ -1,0 +1,191 @@
+{
+  "project": {
+    "id": "ahmed-jeddah-villa",
+    "owner": "Ahmed (illustrative client)",
+    "city": "Jeddah",
+    "plot_area_m2": 500,
+    "built_up_area_m2": 600,
+    "floors": 2,
+    "finish_level": "standard",
+    "budget_incl_vat_sar": 2656500,
+    "baseline_months": 14,
+    "illustrative": true,
+    "has_roof_annex": true,
+    "has_basement": false,
+    "floors_label": "ground + first + roof annex"
+  },
+  "missing_info_at_intake": [
+    {
+      "item": "Soil investigation report",
+      "severity": "blocker",
+      "resolved_month": 0
+    },
+    {
+      "item": "Electrical load schedule incomplete",
+      "severity": "blocker",
+      "resolved_month": 0
+    },
+    {
+      "item": "Window specifications not approved",
+      "severity": "high",
+      "resolved_month": 0
+    }
+  ],
+  "change_log": [
+    {
+      "month": 2,
+      "type": "change_request",
+      "title": "Revised foundation detail (soil differs from survey)",
+      "cost_sar": 18000,
+      "days": 7,
+      "approved_by": "engineer",
+      "contingency_after": 192000,
+      "affects_task_id": "T08"
+    },
+    {
+      "month": 5,
+      "type": "procurement_risk",
+      "title": "Rebar delivery could slip 12 days; alternative supplier expedited",
+      "cost_sar": 4000,
+      "days_avoided": 8,
+      "approved_by": "engineer",
+      "contingency_after": 188000
+    },
+    {
+      "month": 6,
+      "type": "quote_variance",
+      "title": "Electrical quote 275,000 vs 230,000 allowance; normalized to 242,000",
+      "first_quote_sar": 275000,
+      "allowance_sar": 230000,
+      "approved_sar": 242000,
+      "saving_vs_first_quote_sar": 33000,
+      "cost_sar": 12000,
+      "contingency_after": 176000,
+      "approved_by": "engineer"
+    },
+    {
+      "month": 8,
+      "type": "risk_forecast",
+      "title": "Forecast for emerging risks",
+      "cost_sar": 76000,
+      "contingency_after": 100000,
+      "forecast": true
+    }
+  ],
+  "inspections": [
+    {
+      "id": "HP-PLB-01",
+      "month": 8,
+      "task_id": "T21",
+      "title": "Bathroom plumbing pressure test",
+      "status_history": [
+        {
+          "status": "submitted",
+          "by": "contractor",
+          "evidence": [
+            "pressure_test_record",
+            "photos"
+          ]
+        },
+        {
+          "status": "rejected",
+          "by": "engineer",
+          "reason": "Joint detail does not match approved design"
+        },
+        {
+          "status": "approved",
+          "by": "engineer",
+          "note": "Joint fixed and retested before wall closure"
+        }
+      ]
+    }
+  ],
+  "month8_snapshot": {
+    "physical_progress_pct": 58,
+    "planned_progress_pct": 61,
+    "paid_sar": 1150000,
+    "committed_unpaid_sar": 640000,
+    "remaining_uncommitted_sar": 420000,
+    "forecast_final_cost_excl_vat_sar": 2210000,
+    "budget_excl_vat_sar": 2310000
+  },
+  "example_notification_ar_source_en": "The bathroom plumbing inspection is pending. Wall finishing cannot start until the engineer approves the pressure test.",
+  "payments": [
+    {
+      "id": "PAY-01",
+      "month": 1,
+      "amount_sar": 150000,
+      "description": "Mobilisation advance"
+    },
+    {
+      "id": "PAY-02",
+      "month": 2,
+      "amount_sar": 160000,
+      "description": "Foundation certificate"
+    },
+    {
+      "id": "PAY-03",
+      "month": 4,
+      "amount_sar": 210000,
+      "description": "Structure certificate 1"
+    },
+    {
+      "id": "PAY-04",
+      "month": 5,
+      "amount_sar": 190000,
+      "description": "Structure certificate 2"
+    },
+    {
+      "id": "PAY-05",
+      "month": 6,
+      "amount_sar": 210000,
+      "description": "MEP first-fix certificate 1"
+    },
+    {
+      "id": "PAY-06",
+      "month": 7,
+      "amount_sar": 230000,
+      "description": "MEP first-fix certificate 2"
+    }
+  ],
+  "commitments": [
+    {
+      "id": "COM-01",
+      "amount_sar": 242000,
+      "description": "Electrical subcontract (approved normalised quote)"
+    },
+    {
+      "id": "COM-02",
+      "amount_sar": 260000,
+      "description": "Plaster and tiling subcontract"
+    },
+    {
+      "id": "COM-03",
+      "amount_sar": 138000,
+      "description": "Aluminium windows and doors supply"
+    }
+  ],
+  "task_progress_pct": {
+    "status_day": 274,
+    "note": "ILLUSTRATIVE. Per-task % complete at status day, chosen to reproduce the 58% physical progress in month8_snapshot.",
+    "values": {
+      "T06": 100,
+      "T07": 100,
+      "T08": 100,
+      "T09": 100,
+      "T10": 100,
+      "T11": 100,
+      "T12": 100,
+      "T13": 100,
+      "T14": 100,
+      "T15": 100,
+      "T16": 100,
+      "T17": 100,
+      "T18": 50,
+      "T19": 60,
+      "T20": 80,
+      "T21": 100,
+      "T22": 50
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "note": "SKELETON — verify every step, document list and owner with construction experts before the demo.",
+  "items": [
+    {
+      "id": "P01",
+      "title_ar": "التعاقد مع مكتب هندسي مرخّص (تصميم وإشراف)",
+      "title_en": "Contract a licensed engineering office (design + supervision)",
+      "owner": "owner",
+      "blocks_task_id": "T03",
+      "documents": [],
+      "status": "to_verify"
+    },
+    {
+      "id": "P02",
+      "title_ar": "تقرير فحص التربة",
+      "title_en": "Soil investigation report",
+      "owner": "engineer",
+      "blocks_task_id": "T02",
+      "documents": [],
+      "status": "to_verify"
+    },
+    {
+      "id": "P03",
+      "title_ar": "رخصة البناء عبر منصة بلدي",
+      "title_en": "Building permit via Balady",
+      "owner": "owner",
+      "blocks_task_id": "T05",
+      "documents": [],
+      "status": "to_verify"
+    },
+    {
+      "id": "P04",
+      "title_ar": "فحوصات الموقع عند نقاط التوقف",
+      "title_en": "Site inspections at hold points",
+      "owner": "engineer",
+      "blocks_task_id": "T21",
+      "documents": [],
+      "status": "to_verify"
+    },
+    {
+      "id": "P05",
+      "title_ar": "توصيل الخدمات (كهرباء، مياه)",
+      "title_en": "Utility connections (electricity, water)",
+      "owner": "owner",
+      "blocks_task_id": "T31",
+      "documents": [],
+      "status": "to_verify"
+    },
+    {
+      "id": "P06",
+      "title_ar": "شهادة إتمام البناء / الإشغال",
+      "title_en": "Completion / occupancy certificate",
+      "owner": "engineer",
+      "blocks_task_id": "T33",
+      "documents": [],
+      "status": "to_verify"
+    }
+  ]
+}

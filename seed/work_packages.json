@@ -1,0 +1,40 @@
+{
+  "work_packages": [
+    {
+      "id": "WP1_site_foundations",
+      "name": "Site preparation & foundations",
+      "months": "1-2",
+      "budget_sar": 300000
+    },
+    {
+      "id": "WP2_structure",
+      "name": "Structural works",
+      "months": "3-5",
+      "budget_sar": 480000
+    },
+    {
+      "id": "WP3_mep",
+      "name": "MEP systems",
+      "months": "6-8",
+      "budget_sar": 560000
+    },
+    {
+      "id": "WP4_finishes",
+      "name": "Architectural finishes",
+      "months": "8-12",
+      "budget_sar": 620000
+    },
+    {
+      "id": "WP5_external",
+      "name": "External works & handover",
+      "months": "12-14",
+      "budget_sar": 140000
+    }
+  ],
+  "contingency_pct": 0.1,
+  "contingency_sar": 210000,
+  "subtotal_excl_vat_sar": 2310000,
+  "vat_pct": 0.15,
+  "vat_sar": 346500,
+  "total_incl_vat_sar": 2656500
+}
