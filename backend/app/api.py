@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from functools import lru_cache
 from uuid import uuid4
 
@@ -13,6 +14,7 @@ from app.ai.intake import run_intake
 from app.ai.quote_compare import compare_quote, extract_quote
 from app.engine.estimate import estimate
 from app.models import (
+    BudgetDecision,
     ChangeCreate,
     ChangeEvent,
     Commitment,
@@ -23,10 +25,11 @@ from app.models import (
     InspectionEvent,
     IntakeResult,
     InspectionStatusUpdate,
-    PermitItem,
+    PermitView,
     Payment,
     PaymentCreate,
     ProjectCreate,
+    ProjectDocument,
     ProjectInput,
     ProjectRecord,
     Notification,
@@ -38,12 +41,22 @@ from app.models import (
     TaskTemplate,
 )
 from app.seed_loader import load_permits, load_schedule_template
-from app.service import dashboard_for, make_record, schedule_for
+from app.service import (
+    BudgetStateError,
+    accept_budget,
+    dashboard_for,
+    make_record,
+    permit_views,
+    reject_budget,
+    schedule_for,
+)
 from app.store import ProjectStore
 
 router = APIRouter(prefix="/api")
 
 MAX_PDF_BYTES = 10 * 1024 * 1024
+MAX_DOC_BYTES = 10 * 1024 * 1024
+DOC_TYPES = {"application/pdf", "image/jpeg", "image/png"}
 
 
 async def _read_pdf(upload: UploadFile | None) -> bytes | None:
@@ -141,10 +154,62 @@ def get_dashboard(
     return dashboard_for(_load(store, project_id), _template(), status_day)
 
 
-@router.get("/projects/{project_id}/permits", response_model=list[PermitItem])
-def get_permits(project_id: str, store: ProjectStore = Depends(get_store)) -> list[PermitItem]:
-    _load(store, project_id)  # 404 if the project does not exist
-    return load_permits()
+@router.get("/projects/{project_id}/permits", response_model=list[PermitView])
+def get_permits(project_id: str, store: ProjectStore = Depends(get_store)) -> list[PermitView]:
+    return permit_views(_load(store, project_id), load_permits())
+
+
+@router.post("/projects/{project_id}/permits/{permit_id}/documents", status_code=201, response_model=ProjectDocument)
+async def upload_permit_document(
+    project_id: str,
+    permit_id: str,
+    file: UploadFile = File(...),
+    store: ProjectStore = Depends(get_store),
+) -> ProjectDocument:
+    """Record a document for a permit or soil step. Only the metadata is kept for now;
+    file storage (Cloud Storage) comes with the deploy step."""
+    record = _load(store, project_id)
+    if permit_id not in {p.id for p in load_permits()}:
+        raise HTTPException(status_code=404, detail=f"Permit step {permit_id} not found")
+    if file.content_type not in DOC_TYPES:
+        raise HTTPException(status_code=415, detail="Upload a PDF, JPG or PNG")
+    data = await file.read(MAX_DOC_BYTES + 1)
+    if len(data) > MAX_DOC_BYTES:
+        raise HTTPException(status_code=413, detail="File is larger than 10 MB")
+    doc = ProjectDocument(
+        id=_next_id("DOC", [d.id for d in record.documents]),
+        permit_id=permit_id,
+        filename=file.filename or "document",
+        content_type=file.content_type or "application/octet-stream",
+        size_bytes=len(data),
+        uploaded_at=datetime.now(timezone.utc).isoformat(),
+    )
+    record.documents.append(doc)
+    store.save_project(record)
+    return doc
+
+
+@router.post("/projects/{project_id}/budget/accept", response_model=BudgetDecision)
+def accept_project_budget(project_id: str, store: ProjectStore = Depends(get_store)) -> BudgetDecision:
+    record = _load(store, project_id)
+    try:
+        decision = accept_budget(record)
+    except BudgetStateError as exc:  # already accepted
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    store.save_project(record)
+    return decision
+
+
+@router.post("/projects/{project_id}/budget/reject", response_model=BudgetDecision)
+def reject_project_budget(project_id: str, store: ProjectStore = Depends(get_store)) -> BudgetDecision:
+    """Re-price on the next cheaper option and propose that budget instead."""
+    record = _load(store, project_id)
+    try:
+        decision = reject_budget(record)
+    except ValueError as exc:  # includes BudgetStateError and "no cheaper option left"
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    store.save_project(record)
+    return decision
 
 
 @router.post("/projects/{project_id}/changes", status_code=201, response_model=ChangeEvent)

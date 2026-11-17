@@ -1,38 +1,81 @@
 {
   "status_day": 274,
-  "planned_progress_pct": 66.78,
-  "actual_progress_pct": 58.33,
-  "budget_excl_vat_sar": 2310000,
-  "work_packages_baseline_sar": 2100000,
+  "planned_progress_pct": 66.65,
+  "actual_progress_pct": 58.21,
+  "steps_total": 29,
+  "steps_done": 11,
+  "steps_done_pct": 37.93,
+  "work_packages_total": 5,
+  "work_packages_done": 2,
+  "work_packages_done_pct": 40.0,
+  "work_package_progress": [
+    {
+      "id": "WP1_site_foundations",
+      "name": "Site preparation & foundations",
+      "steps_total": 5,
+      "steps_done": 5,
+      "percent_complete": 100.0
+    },
+    {
+      "id": "WP2_structure",
+      "name": "Structural works",
+      "steps_total": 4,
+      "steps_done": 4,
+      "percent_complete": 100.0
+    },
+    {
+      "id": "WP3_mep",
+      "name": "MEP systems",
+      "steps_total": 5,
+      "steps_done": 2,
+      "percent_complete": 71.36
+    },
+    {
+      "id": "WP4_finishes",
+      "name": "Architectural finishes",
+      "steps_total": 7,
+      "steps_done": 0,
+      "percent_complete": 7.29
+    },
+    {
+      "id": "WP5_external",
+      "name": "External works & handover",
+      "steps_total": 4,
+      "steps_done": 0,
+      "percent_complete": 0.0
+    }
+  ],
+  "budget_excl_vat_sar": 2314620,
+  "work_packages_baseline_sar": 2104200,
   "approved_changes_sar": 34000,
   "risk_forecast_sar": 76000,
-  "forecast_final_cost_sar": 2210000,
-  "forecast_vs_budget_sar": 100000,
+  "forecast_final_cost_sar": 2214200,
+  "forecast_vs_budget_sar": 100420,
   "paid_sar": 1150000,
   "committed_unpaid_sar": 640000,
-  "remaining_uncommitted_sar": 420000,
-  "contingency_start_sar": 210000,
-  "contingency_left_sar": 100000,
+  "remaining_uncommitted_sar": 424200,
+  "contingency_start_sar": 210420,
+  "contingency_left_sar": 100420,
   "contingency_ledger": [
     {
       "label": "Revised foundation detail (soil differs from survey)",
       "amount_sar": 18000,
-      "balance_after_sar": 192000
+      "balance_after_sar": 192420
     },
     {
       "label": "Rebar delivery could slip 12 days; alternative supplier expedited",
       "amount_sar": 4000,
-      "balance_after_sar": 188000
+      "balance_after_sar": 188420
     },
     {
       "label": "Electrical quote 275,000 vs 230,000 allowance; normalized to 242,000",
       "amount_sar": 12000,
-      "balance_after_sar": 176000
+      "balance_after_sar": 176420
     },
     {
       "label": "Forecast for emerging risks",
       "amount_sar": 76000,
-      "balance_after_sar": 100000
+      "balance_after_sar": 100420
     }
   ],
   "baseline_handover_day": 456,

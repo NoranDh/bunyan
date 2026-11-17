@@ -281,9 +281,147 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PermitItem"
+                    "$ref": "#/components/schemas/PermitView"
                   },
                   "title": "Response Get Permits Api Projects  Project Id  Permits Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/permits/{permit_id}/documents": {
+      "post": {
+        "summary": "Upload Permit Document",
+        "description": "Record a document for a permit or soil step. Only the metadata is kept for now;\nfile storage (Cloud Storage) comes with the deploy step.",
+        "operationId": "upload_permit_document_api_projects__project_id__permits__permit_id__documents_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "permit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Permit Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_permit_document_api_projects__project_id__permits__permit_id__documents_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDocument"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/budget/accept": {
+      "post": {
+        "summary": "Accept Project Budget",
+        "operationId": "accept_project_budget_api_projects__project_id__budget_accept_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetDecision"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{project_id}/budget/reject": {
+      "post": {
+        "summary": "Reject Project Budget",
+        "description": "Re-price on the next cheaper option and propose that budget instead.",
+        "operationId": "reject_project_budget_api_projects__project_id__budget_reject_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetDecision"
                 }
               }
             }
@@ -698,6 +836,67 @@
   },
   "components": {
     "schemas": {
+      "AllowanceLine": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "item": {
+            "type": "string",
+            "title": "Item"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "fixed",
+              "percent"
+            ],
+            "title": "Basis"
+          },
+          "low_sar": {
+            "type": "integer",
+            "title": "Low Sar"
+          },
+          "high_sar": {
+            "type": "integer",
+            "title": "High Sar"
+          },
+          "baseline_sar": {
+            "type": "integer",
+            "title": "Baseline Sar"
+          },
+          "permit_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Permit Id"
+          },
+          "calculation": {
+            "items": {
+              "$ref": "#/components/schemas/CalcStep"
+            },
+            "type": "array",
+            "title": "Calculation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "item",
+          "basis",
+          "low_sar",
+          "high_sar",
+          "baseline_sar"
+        ],
+        "title": "AllowanceLine",
+        "description": "A cost outside the BOM (permits, soil, survey, utilities, fees). Baseline until real figures exist."
+      },
       "BOMLine": {
         "properties": {
           "id": {
@@ -739,6 +938,13 @@
             },
             "type": "object",
             "title": "Work Package Split"
+          },
+          "calculation": {
+            "items": {
+              "$ref": "#/components/schemas/CalcStep"
+            },
+            "type": "array",
+            "title": "Calculation"
           }
         },
         "type": "object",
@@ -828,48 +1034,118 @@
         "type": "object",
         "title": "Body_post_quote_compare_api_projects__project_id__quotes_compare_post"
       },
-      "BudgetFit": {
+      "Body_upload_permit_document_api_projects__project_id__permits__permit_id__documents_post": {
         "properties": {
-          "budget_incl_vat_sar": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Budget Incl Vat Sar"
-          },
-          "difference_sar": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Difference Sar",
-            "description": "budget − estimate; positive means under budget"
-          },
-          "status": {
+          "file": {
             "type": "string",
-            "enum": [
-              "under",
-              "over",
-              "on_budget",
-              "no_budget"
-            ],
-            "title": "Status"
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
           }
         },
         "type": "object",
         "required": [
-          "budget_incl_vat_sar",
-          "status"
+          "file"
         ],
-        "title": "BudgetFit"
+        "title": "Body_upload_permit_document_api_projects__project_id__permits__permit_id__documents_post"
+      },
+      "BudgetDecision": {
+        "properties": {
+          "budget": {
+            "$ref": "#/components/schemas/BudgetProposal"
+          },
+          "estimate": {
+            "$ref": "#/components/schemas/Estimate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "budget",
+          "estimate"
+        ],
+        "title": "BudgetDecision"
+      },
+      "BudgetProposal": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "accepted"
+            ],
+            "title": "Status"
+          },
+          "proposed_budget_sar": {
+            "type": "integer",
+            "title": "Proposed Budget Sar",
+            "description": "Construction incl. VAT plus allowances"
+          },
+          "accepted_budget_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted Budget Sar"
+          },
+          "rejections": {
+            "type": "integer",
+            "title": "Rejections",
+            "default": 0
+          },
+          "last_change": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Last Change",
+            "description": "What the latest rejection cut"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "proposed_budget_sar"
+        ],
+        "title": "BudgetProposal",
+        "description": "The estimator proposes a budget; the owner accepts it or rejects it for a cheaper option."
+      },
+      "CalcStep": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "formula": {
+            "type": "string",
+            "title": "Formula"
+          },
+          "result": {
+            "type": "string",
+            "title": "Result"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "formula",
+          "result"
+        ],
+        "title": "CalcStep",
+        "description": "One step of a calculation, shown as a row in the UI: what was done, with what, and the result."
       },
       "ChangeCreate": {
         "properties": {
@@ -1110,6 +1386,37 @@
             "type": "number",
             "title": "Actual Progress Pct"
           },
+          "steps_total": {
+            "type": "integer",
+            "title": "Steps Total"
+          },
+          "steps_done": {
+            "type": "integer",
+            "title": "Steps Done"
+          },
+          "steps_done_pct": {
+            "type": "number",
+            "title": "Steps Done Pct"
+          },
+          "work_packages_total": {
+            "type": "integer",
+            "title": "Work Packages Total"
+          },
+          "work_packages_done": {
+            "type": "integer",
+            "title": "Work Packages Done"
+          },
+          "work_packages_done_pct": {
+            "type": "number",
+            "title": "Work Packages Done Pct"
+          },
+          "work_package_progress": {
+            "items": {
+              "$ref": "#/components/schemas/WorkPackageProgress"
+            },
+            "type": "array",
+            "title": "Work Package Progress"
+          },
           "budget_excl_vat_sar": {
             "type": "integer",
             "title": "Budget Excl Vat Sar"
@@ -1200,6 +1507,13 @@
           "status_day",
           "planned_progress_pct",
           "actual_progress_pct",
+          "steps_total",
+          "steps_done",
+          "steps_done_pct",
+          "work_packages_total",
+          "work_packages_done",
+          "work_packages_done_pct",
+          "work_package_progress",
           "budget_excl_vat_sar",
           "work_packages_baseline_sar",
           "approved_changes_sar",
@@ -1276,8 +1590,29 @@
             "type": "integer",
             "title": "Cost Per M2 Excl Vat Sar"
           },
-          "budget_fit": {
-            "$ref": "#/components/schemas/BudgetFit"
+          "allowances": {
+            "items": {
+              "$ref": "#/components/schemas/AllowanceLine"
+            },
+            "type": "array",
+            "title": "Allowances"
+          },
+          "allowances_total_sar": {
+            "type": "integer",
+            "title": "Allowances Total Sar",
+            "description": "Not VAT-bearing in this model (ASSUMPTION)"
+          },
+          "proposed_budget_sar": {
+            "type": "integer",
+            "title": "Proposed Budget Sar",
+            "description": "total_incl_vat + allowances_total: the figure the owner accepts or rejects"
+          },
+          "totals_calculation": {
+            "items": {
+              "$ref": "#/components/schemas/CalcStep"
+            },
+            "type": "array",
+            "title": "Totals Calculation"
           },
           "assumptions": {
             "items": {
@@ -1313,7 +1648,9 @@
           "vat_sar",
           "total_incl_vat_sar",
           "cost_per_m2_excl_vat_sar",
-          "budget_fit",
+          "allowances",
+          "allowances_total_sar",
+          "proposed_budget_sar",
           "assumptions"
         ],
         "title": "Estimate"
@@ -1711,7 +2048,7 @@
         ],
         "title": "PaymentCreate"
       },
-      "PermitItem": {
+      "PermitView": {
         "properties": {
           "id": {
             "type": "string",
@@ -1743,12 +2080,31 @@
               "type": "string"
             },
             "type": "array",
-            "title": "Documents"
+            "title": "Documents",
+            "description": "Documents this step needs"
           },
           "status": {
             "type": "string",
             "title": "Status",
             "default": "to_verify"
+          },
+          "baseline_cost_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline Cost Sar"
+          },
+          "uploaded": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectDocument"
+            },
+            "type": "array",
+            "title": "Uploaded"
           }
         },
         "type": "object",
@@ -1759,8 +2115,8 @@
           "owner",
           "blocks_task_id"
         ],
-        "title": "PermitItem",
-        "description": "One step of معاملات البناء, linked to the schedule task it blocks."
+        "title": "PermitView",
+        "description": "A permit step with its baseline cost and the documents uploaded so far."
       },
       "ProjectCreate": {
         "properties": {
@@ -1780,6 +2136,45 @@
           "input"
         ],
         "title": "ProjectCreate"
+      },
+      "ProjectDocument": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "permit_id": {
+            "type": "string",
+            "title": "Permit Id"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Content Type"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "title": "Size Bytes"
+          },
+          "uploaded_at": {
+            "type": "string",
+            "title": "Uploaded At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "permit_id",
+          "filename",
+          "content_type",
+          "size_bytes",
+          "uploaded_at"
+        ],
+        "title": "ProjectDocument",
+        "description": "A file the owner uploaded against a permit or soil step. Metadata only for now."
       },
       "ProjectInput": {
         "properties": {
@@ -1827,17 +2222,21 @@
             "title": "City",
             "default": "Jeddah"
           },
-          "budget_incl_vat_sar": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Budget Incl Vat Sar"
+          "duration_months": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 1.0,
+            "title": "Duration Months",
+            "description": "Build duration. Above 12 months, later work is escalated.",
+            "default": 12
+          },
+          "annual_inflation_pct": {
+            "type": "number",
+            "maximum": 0.2,
+            "minimum": 0.0,
+            "title": "Annual Inflation Pct",
+            "description": "Yearly rise in material and labour prices (ASSUMPTION)",
+            "default": 0.03
           },
           "rate_overrides": {
             "additionalProperties": {
@@ -1872,6 +2271,9 @@
           },
           "estimate": {
             "$ref": "#/components/schemas/Estimate"
+          },
+          "budget": {
+            "$ref": "#/components/schemas/BudgetProposal"
           },
           "task_progress_pct": {
             "additionalProperties": {
@@ -1913,6 +2315,13 @@
             "type": "array",
             "title": "Commitments"
           },
+          "documents": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectDocument"
+            },
+            "type": "array",
+            "title": "Documents"
+          },
           "illustrative": {
             "type": "boolean",
             "title": "Illustrative",
@@ -1924,7 +2333,8 @@
           "id",
           "name",
           "input",
-          "estimate"
+          "estimate",
+          "budget"
         ],
         "title": "ProjectRecord",
         "description": "What the store keeps for one project. Schedule and dashboard are recomputed from this."
@@ -2390,7 +2800,25 @@
           },
           "budget_sar": {
             "type": "integer",
-            "title": "Budget Sar"
+            "title": "Budget Sar",
+            "description": "After escalation"
+          },
+          "escalation_years": {
+            "type": "integer",
+            "title": "Escalation Years",
+            "default": 0
+          },
+          "escalation_sar": {
+            "type": "integer",
+            "title": "Escalation Sar",
+            "default": 0
+          },
+          "calculation": {
+            "items": {
+              "$ref": "#/components/schemas/CalcStep"
+            },
+            "type": "array",
+            "title": "Calculation"
           }
         },
         "type": "object",
@@ -2403,6 +2831,40 @@
           "budget_sar"
         ],
         "title": "WorkPackageBudget"
+      },
+      "WorkPackageProgress": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "steps_total": {
+            "type": "integer",
+            "title": "Steps Total"
+          },
+          "steps_done": {
+            "type": "integer",
+            "title": "Steps Done"
+          },
+          "percent_complete": {
+            "type": "number",
+            "title": "Percent Complete",
+            "description": "Cost-weighted, from the task % complete"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "steps_total",
+          "steps_done",
+          "percent_complete"
+        ],
+        "title": "WorkPackageProgress"
       }
     }
   }

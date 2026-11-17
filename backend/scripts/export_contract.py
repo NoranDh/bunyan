@@ -28,7 +28,6 @@ AHMED_INPUT = {
     "has_basement": False,
     "finish_level": "standard",
     "city": "Jeddah",
-    "budget_incl_vat_sar": 2_656_500,
 }
 
 

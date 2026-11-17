@@ -24,11 +24,21 @@ class ProjectInput(BaseModel):
     has_basement: bool = False
     finish_level: FinishLevel = "standard"
     city: str = "Jeddah"
-    budget_incl_vat_sar: int | None = Field(default=None, ge=0)
+    duration_months: int = Field(default=12, ge=1, le=60, description="Build duration. Above 12 months, later work is escalated.")
+    annual_inflation_pct: float = Field(default=0.03, ge=0, le=0.2, description="Yearly rise in material and labour prices (ASSUMPTION)")
     rate_overrides: dict[str, float] = Field(
         default_factory=dict,
         description="BOM line id -> SAR rate; an override wins over the reference rate.",
     )
+
+
+class CalcStep(BaseModel):
+    """One step of a calculation, shown as a row in the UI: what was done, with what, and the result."""
+
+    label: str
+    formula: str
+    result: str
+    source: str | None = None
 
 
 class BOMLine(BaseModel):
@@ -41,6 +51,7 @@ class BOMLine(BaseModel):
     amount_sar: int
     rate_overridden: bool = False
     work_package_split: dict[str, float]
+    calculation: list[CalcStep] = Field(default_factory=list)
 
 
 class WorkPackageBudget(BaseModel):
@@ -49,15 +60,33 @@ class WorkPackageBudget(BaseModel):
     months: str
     materials_sar: int
     labor_factor: float
-    budget_sar: int
+    budget_sar: int = Field(description="After escalation")
+    escalation_years: int = 0
+    escalation_sar: int = 0
+    calculation: list[CalcStep] = Field(default_factory=list)
 
 
-class BudgetFit(BaseModel):
-    budget_incl_vat_sar: int | None
-    difference_sar: int | None = Field(
-        default=None, description="budget − estimate; positive means under budget"
-    )
-    status: Literal["under", "over", "on_budget", "no_budget"]
+class AllowanceLine(BaseModel):
+    """A cost outside the BOM (permits, soil, survey, utilities, fees). Baseline until real figures exist."""
+
+    id: str
+    item: str
+    basis: Literal["fixed", "percent"]
+    low_sar: int
+    high_sar: int
+    baseline_sar: int
+    permit_id: str | None = None
+    calculation: list[CalcStep] = Field(default_factory=list)
+
+
+class BudgetProposal(BaseModel):
+    """The estimator proposes a budget; the owner accepts it or rejects it for a cheaper option."""
+
+    status: Literal["proposed", "accepted"]
+    proposed_budget_sar: int = Field(description="Construction incl. VAT plus allowances")
+    accepted_budget_sar: int | None = None
+    rejections: int = 0
+    last_change: list[str] = Field(default_factory=list, description="What the latest rejection cut")
 
 
 class Estimate(BaseModel):
@@ -73,7 +102,10 @@ class Estimate(BaseModel):
     vat_sar: int
     total_incl_vat_sar: int
     cost_per_m2_excl_vat_sar: int
-    budget_fit: BudgetFit
+    allowances: list[AllowanceLine]
+    allowances_total_sar: int = Field(description="Not VAT-bearing in this model (ASSUMPTION)")
+    proposed_budget_sar: int = Field(description="total_incl_vat + allowances_total: the figure the owner accepts or rejects")
+    totals_calculation: list[CalcStep] = Field(default_factory=list)
     assumptions: list[str]
     warnings: list[str] = Field(default_factory=list)
     disclaimer: str = (
@@ -182,10 +214,25 @@ class ContingencyEntry(BaseModel):
     balance_after_sar: int
 
 
+class WorkPackageProgress(BaseModel):
+    id: str
+    name: str
+    steps_total: int
+    steps_done: int
+    percent_complete: float = Field(description="Cost-weighted, from the task % complete")
+
+
 class Dashboard(BaseModel):
     status_day: int
     planned_progress_pct: float
     actual_progress_pct: float
+    steps_total: int
+    steps_done: int
+    steps_done_pct: float
+    work_packages_total: int
+    work_packages_done: int
+    work_packages_done_pct: float
+    work_package_progress: list[WorkPackageProgress]
     budget_excl_vat_sar: int
     work_packages_baseline_sar: int
     approved_changes_sar: int
@@ -216,8 +263,26 @@ class PermitItem(BaseModel):
     title_en: str
     owner: Literal["owner", "engineer", "contractor"]
     blocks_task_id: str
-    documents: list[str] = Field(default_factory=list)
+    documents: list[str] = Field(default_factory=list, description="Documents this step needs")
     status: str = "to_verify"  # to_verify until checked with construction experts
+
+
+class ProjectDocument(BaseModel):
+    """A file the owner uploaded against a permit or soil step. Metadata only for now."""
+
+    id: str
+    permit_id: str
+    filename: str
+    content_type: str
+    size_bytes: int
+    uploaded_at: str
+
+
+class PermitView(PermitItem):
+    """A permit step with its baseline cost and the documents uploaded so far."""
+
+    baseline_cost_sar: int | None = None
+    uploaded: list[ProjectDocument] = Field(default_factory=list)
 
 
 class ProjectRecord(BaseModel):
@@ -227,13 +292,20 @@ class ProjectRecord(BaseModel):
     name: str
     input: ProjectInput
     estimate: Estimate
+    budget: BudgetProposal
     task_progress_pct: dict[str, float] = Field(default_factory=dict)
     status_day: int = 0
     changes: list[ChangeEvent] = Field(default_factory=list)
     inspections: list[Inspection] = Field(default_factory=list)
     payments: list[Payment] = Field(default_factory=list)
     commitments: list[Commitment] = Field(default_factory=list)
+    documents: list[ProjectDocument] = Field(default_factory=list)
     illustrative: bool = False
+
+
+class BudgetDecision(BaseModel):
+    budget: BudgetProposal
+    estimate: Estimate
 
 
 class ProjectSummary(BaseModel):

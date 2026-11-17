@@ -6,7 +6,9 @@
     "owner": "owner",
     "blocks_task_id": "T03",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": 126252,
+    "uploaded": []
   },
   {
     "id": "P02",
@@ -15,7 +17,9 @@
     "owner": "engineer",
     "blocks_task_id": "T02",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": 16500,
+    "uploaded": []
   },
   {
     "id": "P03",
@@ -24,7 +28,9 @@
     "owner": "owner",
     "blocks_task_id": "T05",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": 37500,
+    "uploaded": []
   },
   {
     "id": "P04",
@@ -33,7 +39,9 @@
     "owner": "engineer",
     "blocks_task_id": "T21",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": null,
+    "uploaded": []
   },
   {
     "id": "P05",
@@ -42,7 +50,9 @@
     "owner": "owner",
     "blocks_task_id": "T31",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": 50000,
+    "uploaded": []
   },
   {
     "id": "P06",
@@ -51,6 +61,8 @@
     "owner": "engineer",
     "blocks_task_id": "T33",
     "documents": [],
-    "status": "to_verify"
+    "status": "to_verify",
+    "baseline_cost_sar": null,
+    "uploaded": []
   }
 ]

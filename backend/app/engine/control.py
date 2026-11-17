@@ -2,6 +2,8 @@
 
 - Planned %  : baseline schedule, cost-weighted by work package, at the status day.
 - Actual %   : per-task % complete, cost-weighted the same way.
+- Steps      : schedule tasks (not milestones or hold points) and how many reached 100%.
+- Work pkgs  : per-package step counts and % complete; a package is done when all its steps are.
 - Money      : paid, committed-but-unpaid, remaining uncommitted.
 - Forecast   : baseline work packages + approved changes + risk forecast.
 - Contingency: starts at the engine's contingency and is drawn by every change with a cost.
@@ -22,6 +24,7 @@ from app.models import (
     Payment,
     ScheduledTask,
     ScheduleResult,
+    WorkPackageProgress,
 )
 
 
@@ -75,6 +78,40 @@ def progress(
     return round(planned, 2), round(actual, 2)
 
 
+def step_progress(
+    schedule: ScheduleResult,
+    estimate: Estimate,
+    actual_pct_by_task: Mapping[str, float],
+) -> tuple[int, int, list[WorkPackageProgress], int]:
+    """Return (steps total, steps done, per-package progress, packages done)."""
+    steps = [t for t in schedule.tasks if t.type == "task"]
+    done_ids = {t.id for t in steps if actual_pct_by_task.get(t.id, 0.0) >= 100.0}
+
+    packages: list[WorkPackageProgress] = []
+    for wp in estimate.work_packages:
+        in_wp = [t for t in steps if t.work_package_id == wp.id]
+        weight = sum(max(t.baseline_end_day - t.baseline_start_day, 0) for t in in_wp)
+        if weight:
+            pct = sum(
+                max(t.baseline_end_day - t.baseline_start_day, 0)
+                * _clamp01(actual_pct_by_task.get(t.id, 0.0) / 100.0)
+                for t in in_wp
+            ) / weight
+        else:
+            pct = 0.0
+        packages.append(
+            WorkPackageProgress(
+                id=wp.id,
+                name=wp.name,
+                steps_total=len(in_wp),
+                steps_done=sum(1 for t in in_wp if t.id in done_ids),
+                percent_complete=round(100.0 * pct, 2),
+            )
+        )
+    packages_done = sum(1 for p in packages if p.steps_total and p.steps_done == p.steps_total)
+    return len(steps), len(done_ids), packages, packages_done
+
+
 def contingency_ledger(start_sar: int, changes: Sequence[ChangeEvent]) -> list[ContingencyEntry]:
     """Every change with a cost draws on contingency, in month order."""
     entries: list[ContingencyEntry] = []
@@ -99,6 +136,7 @@ def compute_dashboard(
     inspections: Sequence[Inspection],
 ) -> Dashboard:
     planned_pct, actual_pct = progress(schedule, estimate, status_day, actual_pct_by_task)
+    steps_total, steps_done, packages, packages_done = step_progress(schedule, estimate, actual_pct_by_task)
 
     wp_baseline = estimate.work_packages_total_sar
     budget_excl_vat = estimate.subtotal_excl_vat_sar
@@ -117,6 +155,13 @@ def compute_dashboard(
         status_day=status_day,
         planned_progress_pct=planned_pct,
         actual_progress_pct=actual_pct,
+        steps_total=steps_total,
+        steps_done=steps_done,
+        steps_done_pct=round(100.0 * steps_done / steps_total, 2) if steps_total else 0.0,
+        work_packages_total=len(packages),
+        work_packages_done=packages_done,
+        work_packages_done_pct=round(100.0 * packages_done / len(packages), 2) if packages else 0.0,
+        work_package_progress=packages,
         budget_excl_vat_sar=budget_excl_vat,
         work_packages_baseline_sar=wp_baseline,
         approved_changes_sar=approved_changes,

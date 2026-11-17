@@ -7,7 +7,8 @@
     "has_basement": false,
     "finish_level": "standard",
     "city": "Jeddah",
-    "budget_incl_vat_sar": 2656500,
+    "duration_months": 12,
+    "annual_inflation_pct": 0.03,
     "rate_overrides": {}
   },
   "bom_lines": [
@@ -23,7 +24,33 @@
       "work_package_split": {
         "WP1_site_foundations": 0.35,
         "WP2_structure": 0.65
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.51667 per m² × 600 m² BUA",
+          "result": "310.002 m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "310.0 m³",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "320 SAR per m³",
+          "result": "320 SAR per m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "310.0 × 320 SAR",
+          "result": "99,200 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M02",
@@ -37,7 +64,33 @@
       "work_package_split": {
         "WP1_site_foundations": 0.35,
         "WP2_structure": 0.65
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.08 per m² × 600 m² BUA",
+          "result": "48.000 t",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "48.0 t",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "3300 SAR per t",
+          "result": "3300 SAR per t",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "48.0 × 3300 SAR",
+          "result": "158,400 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M03",
@@ -50,7 +103,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP2_structure": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "24.1667 per m² × 600 m² BUA",
+          "result": "14,500.002 pc",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "14,500.0 pc",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "6 SAR per pc",
+          "result": "6 SAR per pc",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "14,500.0 × 6 SAR",
+          "result": "87,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M04",
@@ -63,7 +142,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP2_structure": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "2.25 per m² × 600 m² BUA",
+          "result": "1,350.000 bag",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "1,350.0 bag",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "17 SAR per bag",
+          "result": "17 SAR per bag",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "1,350.0 × 17 SAR",
+          "result": "22,950 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M05",
@@ -76,7 +181,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP2_structure": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.3 per m² × 600 m² BUA",
+          "result": "180.000 m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "180.0 m³",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "75 SAR per m³",
+          "result": "75 SAR per m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "180.0 × 75 SAR",
+          "result": "13,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M06",
@@ -89,7 +220,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP1_site_foundations": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.35 per m² × 600 m² BUA",
+          "result": "210.000 m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "210.0 m³",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "65 SAR per m³",
+          "result": "65 SAR per m³",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "210.0 × 65 SAR",
+          "result": "13,650 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M07",
@@ -102,7 +259,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP1_site_foundations": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.91667 per m² × 600 m² BUA",
+          "result": "550.002 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "550.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "30 SAR per m²",
+          "result": "30 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "550.0 × 30 SAR",
+          "result": "16,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M08",
@@ -115,7 +298,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP2_structure": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.5 per m² × 600 m² BUA",
+          "result": "300.000 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "300.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "65 SAR per m²",
+          "result": "65 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "300.0 × 65 SAR",
+          "result": "19,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M09",
@@ -128,7 +337,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP1_site_foundations": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.53333 per m² × 600 m² BUA",
+          "result": "319.998 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "320.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "12 SAR per m²",
+          "result": "12 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "320.0 × 12 SAR",
+          "result": "3,840 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M10",
@@ -141,7 +376,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "2.66667 per m² × 600 m² BUA",
+          "result": "1,600.002 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "1,600.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "24 SAR per m²",
+          "result": "24 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "24 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "1,600.0 × 24 SAR",
+          "result": "38,400 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M11",
@@ -154,7 +421,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.86667 per m² × 600 m² BUA",
+          "result": "520.002 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "520.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "90 SAR per m²",
+          "result": "90 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "90 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "520.0 × 90 SAR",
+          "result": "46,800 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M12",
@@ -167,7 +466,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.5 per m² × 600 m² BUA",
+          "result": "300.000 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "300.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "80 SAR per m²",
+          "result": "80 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "80 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "300.0 × 80 SAR",
+          "result": "24,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M13",
@@ -180,7 +511,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "3.66667 per m² × 600 m² BUA",
+          "result": "2,200.002 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "2,200.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "15 SAR per m²",
+          "result": "15 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "15 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "2,200.0 × 15 SAR",
+          "result": "33,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M14",
@@ -193,7 +556,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "1 per m² × 600 m² BUA",
+          "result": "600.000 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "600.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "65 SAR per m²",
+          "result": "65 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "65 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "600.0 × 65 SAR",
+          "result": "39,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M15",
@@ -206,7 +601,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.04 per m² × 600 m² BUA",
+          "result": "24.000 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "24.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "1250 SAR per set",
+          "result": "1250 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "1250 SAR per set",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "24.0 × 1250 SAR",
+          "result": "30,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M16",
@@ -219,7 +646,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00667 per m² × 600 m² BUA",
+          "result": "4.002 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "4.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "3800 SAR per set",
+          "result": "3800 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "3800 SAR per set",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "4.0 × 3800 SAR",
+          "result": "15,200 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M17",
@@ -232,7 +691,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.2 per m² × 600 m² BUA",
+          "result": "120.000 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "120.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "650 SAR per m²",
+          "result": "650 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "650 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "120.0 × 650 SAR",
+          "result": "78,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M18",
@@ -245,7 +736,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00167 per m² × 600 m² BUA",
+          "result": "1.002 lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "1.0 lot",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "45000 SAR per lot",
+          "result": "45000 SAR per lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "45000 SAR per lot",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "1.0 × 45000 SAR",
+          "result": "45,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M19",
@@ -258,7 +781,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.02 per m² × 600 m² BUA",
+          "result": "12.000 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "12.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "1700 SAR per set",
+          "result": "1700 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "1700 SAR per set",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "12.0 × 1700 SAR",
+          "result": "20,400 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M20",
@@ -271,7 +826,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP4_finishes": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.75 per m² × 600 m² BUA",
+          "result": "450.000 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "450.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "55 SAR per m²",
+          "result": "55 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Finish",
+          "formula": "× 1.0 (standard)",
+          "result": "55 SAR per m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Amount",
+          "formula": "450.0 × 55 SAR",
+          "result": "24,750 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M21",
@@ -284,7 +871,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "1.41667 per m² × 600 m² BUA",
+          "result": "850.002 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "850.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "22 SAR per m",
+          "result": "22 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "850.0 × 22 SAR",
+          "result": "18,700 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M22",
@@ -297,7 +910,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "1.08333 per m² × 600 m² BUA",
+          "result": "649.998 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "650.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "28 SAR per m",
+          "result": "28 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "650.0 × 28 SAR",
+          "result": "18,200 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M23",
@@ -310,7 +949,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00333 per m² × 600 m² BUA",
+          "result": "1.998 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "2.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "4500 SAR per set",
+          "result": "4500 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "2.0 × 4500 SAR",
+          "result": "9,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M24",
@@ -323,7 +988,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00333 per m² × 600 m² BUA",
+          "result": "1.998 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "2.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "5500 SAR per set",
+          "result": "5500 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "2.0 × 5500 SAR",
+          "result": "11,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M25",
@@ -336,7 +1027,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00167 per m² × 600 m² BUA",
+          "result": "1.002 lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "1.0 lot",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "18000 SAR per lot",
+          "result": "18000 SAR per lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "1.0 × 18000 SAR",
+          "result": "18,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M26",
@@ -349,7 +1066,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.04667 per m² × 600 m² BUA",
+          "result": "28.002 TR",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "28.0 TR",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "4500 SAR per TR",
+          "result": "4500 SAR per TR",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "28.0 × 4500 SAR",
+          "result": "126,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M27",
@@ -362,7 +1105,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.83333 per m² × 600 m² BUA",
+          "result": "499.998 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "500.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "60 SAR per m",
+          "result": "60 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "500.0 × 60 SAR",
+          "result": "30,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M28",
@@ -375,7 +1144,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "7.5 per m² × 600 m² BUA",
+          "result": "4,500.000 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "4,500.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "11 SAR per m",
+          "result": "11 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "4,500.0 × 11 SAR",
+          "result": "49,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M29",
@@ -388,7 +1183,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "5.83333 per m² × 600 m² BUA",
+          "result": "3,499.998 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "3,500.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "5 SAR per m",
+          "result": "5 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "3,500.0 × 5 SAR",
+          "result": "17,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M30",
@@ -401,7 +1222,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00833 per m² × 600 m² BUA",
+          "result": "4.998 set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "5.0 set",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "7500 SAR per set",
+          "result": "7500 SAR per set",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "5.0 × 7500 SAR",
+          "result": "37,500 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M31",
@@ -414,7 +1261,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.33333 per m² × 600 m² BUA",
+          "result": "199.998 point",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "200.0 point",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "85 SAR per point",
+          "result": "85 SAR per point",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "200.0 × 85 SAR",
+          "result": "17,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M32",
@@ -427,7 +1300,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.21667 per m² × 600 m² BUA",
+          "result": "130.002 pc",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "130.0 pc",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "230 SAR per pc",
+          "result": "230 SAR per pc",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "130.0 × 230 SAR",
+          "result": "29,900 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M33",
@@ -440,7 +1339,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP3_mep": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "1.5 per m² × 600 m² BUA",
+          "result": "900.000 m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "900.0 m",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "7 SAR per m",
+          "result": "7 SAR per m",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "900.0 × 7 SAR",
+          "result": "6,300 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M34",
@@ -453,7 +1378,39 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP5_external": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.36667 per m² × 600 m² BUA",
+          "result": "220.002 m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Yard scale",
+          "formula": "× 1.000 (yard ÷ 200 m² reference)",
+          "result": "220.002 m²",
+          "source": "MODIFIERS (ASSUMPTION)"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round to 0.1",
+          "result": "220.0 m²",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "105 SAR per m²",
+          "result": "105 SAR per m²",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "220.0 × 105 SAR",
+          "result": "23,100 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M35",
@@ -466,7 +1423,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP5_external": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00167 per m² × 600 m² BUA",
+          "result": "1.002 lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "1.0 lot",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "24000 SAR per lot",
+          "result": "24000 SAR per lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "1.0 × 24000 SAR",
+          "result": "24,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "M36",
@@ -479,7 +1462,33 @@
       "rate_overridden": false,
       "work_package_split": {
         "WP5_external": 1.0
-      }
+      },
+      "calculation": [
+        {
+          "label": "Quantity before adjustments",
+          "formula": "0.00167 per m² × 600 m² BUA",
+          "result": "1.002 lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Rounded quantity",
+          "formula": "round up to whole units",
+          "result": "1.0 lot",
+          "source": null
+        },
+        {
+          "label": "Reference rate",
+          "formula": "18000 SAR per lot",
+          "result": "18000 SAR per lot",
+          "source": "seed/bom_reference_600m2.csv"
+        },
+        {
+          "label": "Amount",
+          "formula": "1.0 × 18000 SAR",
+          "result": "18,000 SAR",
+          "source": null
+        }
+      ]
     }
   ],
   "work_packages": [
@@ -489,7 +1498,29 @@
       "months": "1-2",
       "materials_sar": 124150,
       "labor_factor": 2.4164317358034637,
-      "budget_sar": 300000
+      "budget_sar": 300000,
+      "escalation_years": 0,
+      "escalation_sar": 0,
+      "calculation": [
+        {
+          "label": "Materials",
+          "formula": "Σ BOM amounts × this package's share",
+          "result": "124,150 SAR",
+          "source": "bom_lines"
+        },
+        {
+          "label": "Base budget",
+          "formula": "124,150 × labor factor 2.4164",
+          "result": "300,000 SAR",
+          "source": "LABOR_FACTORS, calibrated from seed/work_packages.json"
+        },
+        {
+          "label": "Budget",
+          "formula": "base budget × escalation",
+          "result": "300,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "WP2_structure",
@@ -497,7 +1528,29 @@
       "months": "3-5",
       "materials_sar": 310390,
       "labor_factor": 1.5464415735043011,
-      "budget_sar": 480000
+      "budget_sar": 480000,
+      "escalation_years": 0,
+      "escalation_sar": 0,
+      "calculation": [
+        {
+          "label": "Materials",
+          "formula": "Σ BOM amounts × this package's share",
+          "result": "310,390 SAR",
+          "source": "bom_lines"
+        },
+        {
+          "label": "Base budget",
+          "formula": "310,390 × labor factor 1.5464",
+          "result": "480,000 SAR",
+          "source": "LABOR_FACTORS, calibrated from seed/work_packages.json"
+        },
+        {
+          "label": "Budget",
+          "formula": "base budget × escalation",
+          "result": "480,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "WP3_mep",
@@ -505,7 +1558,29 @@
       "months": "6-8",
       "materials_sar": 388600,
       "labor_factor": 1.4410705095213587,
-      "budget_sar": 560000
+      "budget_sar": 560000,
+      "escalation_years": 0,
+      "escalation_sar": 0,
+      "calculation": [
+        {
+          "label": "Materials",
+          "formula": "Σ BOM amounts × this package's share",
+          "result": "388,600 SAR",
+          "source": "bom_lines"
+        },
+        {
+          "label": "Base budget",
+          "formula": "388,600 × labor factor 1.4411",
+          "result": "560,000 SAR",
+          "source": "LABOR_FACTORS, calibrated from seed/work_packages.json"
+        },
+        {
+          "label": "Budget",
+          "formula": "base budget × escalation",
+          "result": "560,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "WP4_finishes",
@@ -513,7 +1588,29 @@
       "months": "8-12",
       "materials_sar": 394550,
       "labor_factor": 1.5714104676213407,
-      "budget_sar": 620000
+      "budget_sar": 620000,
+      "escalation_years": 0,
+      "escalation_sar": 0,
+      "calculation": [
+        {
+          "label": "Materials",
+          "formula": "Σ BOM amounts × this package's share",
+          "result": "394,550 SAR",
+          "source": "bom_lines"
+        },
+        {
+          "label": "Base budget",
+          "formula": "394,550 × labor factor 1.5714",
+          "result": "620,000 SAR",
+          "source": "LABOR_FACTORS, calibrated from seed/work_packages.json"
+        },
+        {
+          "label": "Budget",
+          "formula": "base budget × escalation",
+          "result": "620,000 SAR",
+          "source": null
+        }
+      ]
     },
     {
       "id": "WP5_external",
@@ -521,7 +1618,29 @@
       "months": "12-14",
       "materials_sar": 65100,
       "labor_factor": 2.150537634408602,
-      "budget_sar": 140000
+      "budget_sar": 140000,
+      "escalation_years": 0,
+      "escalation_sar": 0,
+      "calculation": [
+        {
+          "label": "Materials",
+          "formula": "Σ BOM amounts × this package's share",
+          "result": "65,100 SAR",
+          "source": "bom_lines"
+        },
+        {
+          "label": "Base budget",
+          "formula": "65,100 × labor factor 2.1505",
+          "result": "140,000 SAR",
+          "source": "LABOR_FACTORS, calibrated from seed/work_packages.json"
+        },
+        {
+          "label": "Budget",
+          "formula": "base budget × escalation",
+          "result": "140,000 SAR",
+          "source": null
+        }
+      ]
     }
   ],
   "materials_total_sar": 1282790,
@@ -533,16 +1652,210 @@
   "vat_sar": 346500,
   "total_incl_vat_sar": 2656500,
   "cost_per_m2_excl_vat_sar": 3850,
-  "budget_fit": {
-    "budget_incl_vat_sar": 2656500,
-    "difference_sar": 0,
-    "status": "on_budget"
-  },
+  "allowances": [
+    {
+      "id": "A01",
+      "item": "Building permit and municipal fees (Balady)",
+      "basis": "fixed",
+      "low_sar": 15000,
+      "high_sar": 60000,
+      "baseline_sar": 37500,
+      "permit_id": "P03",
+      "calculation": [
+        {
+          "label": "Range",
+          "formula": "fixed range",
+          "result": "15,000 to 60,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 15,000 and 60,000",
+          "result": "37,500 SAR",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "item": "Geotechnical / soil investigation",
+      "basis": "fixed",
+      "low_sar": 8000,
+      "high_sar": 25000,
+      "baseline_sar": 16500,
+      "permit_id": "P02",
+      "calculation": [
+        {
+          "label": "Range",
+          "formula": "fixed range",
+          "result": "8,000 to 25,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 8,000 and 25,000",
+          "result": "16,500 SAR",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "item": "Topographic survey",
+      "basis": "fixed",
+      "low_sar": 3000,
+      "high_sar": 8000,
+      "baseline_sar": 5500,
+      "permit_id": null,
+      "calculation": [
+        {
+          "label": "Range",
+          "formula": "fixed range",
+          "result": "3,000 to 8,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 3,000 and 8,000",
+          "result": "5,500 SAR",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "item": "Utility connections (electricity, water)",
+      "basis": "fixed",
+      "low_sar": 20000,
+      "high_sar": 80000,
+      "baseline_sar": 50000,
+      "permit_id": "P05",
+      "calculation": [
+        {
+          "label": "Range",
+          "formula": "fixed range",
+          "result": "20,000 to 80,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 20,000 and 80,000",
+          "result": "50,000 SAR",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "item": "Design and supervision fees",
+      "basis": "percent",
+      "low_sar": 84000,
+      "high_sar": 168000,
+      "baseline_sar": 126000,
+      "permit_id": "P01",
+      "calculation": [
+        {
+          "label": "Basis",
+          "formula": "work packages total",
+          "result": "2,100,000 SAR",
+          "source": "estimate.py"
+        },
+        {
+          "label": "Range",
+          "formula": "4% to 8% × 2,100,000",
+          "result": "84,000 to 168,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 84,000 and 168,000",
+          "result": "126,000 SAR",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "item": "Project management",
+      "basis": "percent",
+      "low_sar": 42000,
+      "high_sar": 84000,
+      "baseline_sar": 63000,
+      "permit_id": null,
+      "calculation": [
+        {
+          "label": "Basis",
+          "formula": "work packages total",
+          "result": "2,100,000 SAR",
+          "source": "estimate.py"
+        },
+        {
+          "label": "Range",
+          "formula": "2% to 4% × 2,100,000",
+          "result": "42,000 to 84,000 SAR",
+          "source": "engine/allowances.py (ASSUMPTION — contractor guide, not verified)"
+        },
+        {
+          "label": "Baseline",
+          "formula": "midpoint of 42,000 and 84,000",
+          "result": "63,000 SAR",
+          "source": null
+        }
+      ]
+    }
+  ],
+  "allowances_total_sar": 298500,
+  "proposed_budget_sar": 2955000,
+  "totals_calculation": [
+    {
+      "label": "Work packages",
+      "formula": "Σ five package budgets",
+      "result": "2,100,000 SAR",
+      "source": null
+    },
+    {
+      "label": "Contingency",
+      "formula": "10% × 2,100,000",
+      "result": "210,000 SAR",
+      "source": "estimate.py"
+    },
+    {
+      "label": "Subtotal excl. VAT",
+      "formula": "2,100,000 + 210,000",
+      "result": "2,310,000 SAR",
+      "source": null
+    },
+    {
+      "label": "VAT",
+      "formula": "15% × 2,310,000",
+      "result": "346,500 SAR",
+      "source": "estimate.py"
+    },
+    {
+      "label": "Total incl. VAT",
+      "formula": "2,310,000 + 346,500",
+      "result": "2,656,500 SAR",
+      "source": null
+    },
+    {
+      "label": "Allowances",
+      "formula": "Σ allowance baselines",
+      "result": "298,500 SAR",
+      "source": "engine/allowances.py"
+    },
+    {
+      "label": "Proposed budget",
+      "formula": "2,656,500 + 298,500",
+      "result": "2,955,000 SAR",
+      "source": null
+    }
+  ],
   "assumptions": [
     "Quantities are reference ratios × BUA (seed/bom_reference_600m2.csv).",
     "Labor factors calibrated once from the reference work-package budgets.",
     "Contingency 10% of work packages; VAT 15% shown separately.",
     "Rates are SAR excluding VAT and are indicative, not supplier quotes.",
+    "Allowances (permits, soil, survey, utilities, design and PM) are added to the proposed budget at baseline midpoints and carry no VAT (ASSUMPTION). See engine/allowances.py. Not included: swimming pool, landscaping beyond the yard items, and furniture, fittings and equipment.",
     "Footprint = BUA ÷ floors = 300 m²; yard = 200 m² (reference 200 m²) — drives paving, boundary and landscape."
   ],
   "warnings": [],

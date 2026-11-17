@@ -65,7 +65,9 @@ def test_demo_sentence_fills_form_and_runs_engine() -> None:
     assert result.project_input.built_up_area_m2 == 600
     assert result.estimate is not None
     assert result.estimate.total_incl_vat_sar == 2_656_500  # the engine computes this, not the model
-    assert result.estimate.budget_fit.difference_sar == 43_500  # 2.7M minus 2,656,500
+    # The stated 2.7M stays as extracted text; the engine proposes its own budget (construction + allowances).
+    assert result.extracted["budget_incl_vat_sar"] == 2_700_000
+    assert result.estimate.proposed_budget_sar == 2_955_000
 
 
 def test_demo_sentence_flags_soil_report_as_blocker() -> None:

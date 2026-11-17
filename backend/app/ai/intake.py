@@ -127,7 +127,6 @@ def run_intake(text: str, llm: GeminiClient, pdf: bytes | None = None) -> Intake
                 has_basement=bool(extracted.has_basement),
                 finish_level=extracted.finish_level or "standard",
                 city=extracted.city or "Jeddah",
-                budget_incl_vat_sar=extracted.budget_incl_vat_sar,
             )
             result_estimate = estimate(project_input)
         except (ValidationError, ValueError) as exc:

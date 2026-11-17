@@ -63,7 +63,7 @@ def load_ahmed() -> AhmedSeed:
         has_basement=p["has_basement"],
         finish_level=p["finish_level"],
         city=p["city"],
-        budget_incl_vat_sar=p["budget_incl_vat_sar"],
+        duration_months=p["baseline_months"],
     )
     changes = []
     for i, c in enumerate(raw["change_log"], start=1):

@@ -19,7 +19,6 @@ INPUT = {
     "has_basement": False,
     "finish_level": "standard",
     "city": "Jeddah",
-    "budget_incl_vat_sar": 2_656_500,
 }
 
 
@@ -63,9 +62,9 @@ def test_ahmed_dashboard_month_8(client: TestClient) -> None:
     assert round(d["actual_progress_pct"]) == 58
     assert d["paid_sar"] == 1_150_000
     assert d["committed_unpaid_sar"] == 640_000
-    assert d["remaining_uncommitted_sar"] == 420_000
-    assert d["forecast_final_cost_sar"] == 2_210_000
-    assert d["contingency_left_sar"] == 100_000
+    assert d["remaining_uncommitted_sar"] == 424_200  # includes the 3% escalation on WP5
+    assert d["forecast_final_cost_sar"] == 2_214_200
+    assert d["contingency_left_sar"] == 100_420
     assert d["handover_slip_days"] == 7
     assert d["inspections"][0]["status"] == "approved"
 

@@ -21,7 +21,6 @@ AHMED = ProjectInput(
     has_basement=False,
     finish_level="standard",
     city="Jeddah",
-    budget_incl_vat_sar=2_656_500,
 )
 
 
@@ -90,9 +89,9 @@ def test_labor_factors_reproduce_from_seed() -> None:
         assert LABOR_FACTORS[w["id"]] == pytest.approx(w["budget_sar"] / materials[w["id"]])
 
 
-def test_reference_has_no_fit_gap(ref) -> None:
-    assert ref.budget_fit.status == "on_budget"
-    assert ref.budget_fit.difference_sar == 0
+def test_proposed_budget_is_construction_plus_allowances(ref) -> None:
+    assert ref.allowances_total_sar == 298_500
+    assert ref.proposed_budget_sar == ref.total_incl_vat_sar + ref.allowances_total_sar == 2_955_000
 
 
 # ---- Behaviour ---------------------------------------------------------------
@@ -135,11 +134,22 @@ def test_footprint_larger_than_plot_is_rejected() -> None:
         estimate(too_big)
 
 
-def test_budget_fit_reports_over_and_under() -> None:
-    over = estimate(AHMED.model_copy(update={"budget_incl_vat_sar": 2_500_000}))
-    under = estimate(AHMED.model_copy(update={"budget_incl_vat_sar": 2_900_000}))
-    assert over.budget_fit.status == "over" and over.budget_fit.difference_sar == -156_500
-    assert under.budget_fit.status == "under" and under.budget_fit.difference_sar == 243_500
+def test_no_escalation_for_a_12_month_project(ref) -> None:
+    assert all(wp.escalation_years == 0 for wp in ref.work_packages)
+
+
+def test_escalation_hits_only_work_that_ends_after_month_12() -> None:
+    long = estimate(AHMED.model_copy(update={"duration_months": 14}))
+    by_id = {wp.id: wp for wp in long.work_packages}
+    # WP5 runs months 12-14, so it ends in year 2. Earlier packages end inside year 1.
+    assert by_id["WP5_external"].escalation_years == 1
+    assert by_id["WP5_external"].escalation_sar == 4_200  # base 140,000 × 3%
+    assert all(by_id[k].escalation_sar == 0 for k in by_id if k != "WP5_external")
+
+
+def test_inflation_rate_is_an_input() -> None:
+    zero = estimate(AHMED.model_copy(update={"duration_months": 14, "annual_inflation_pct": 0.0}))
+    assert zero.work_packages_total_sar == 2_100_000
 
 
 def test_estimate_is_deterministic() -> None:
